@@ -5,16 +5,48 @@
             <div class="absolute top-0 mx-[27%] my-20 leading-7 w-[50%]">
                 <h1 class="text-white font-semibold text-[30px] mb-1 leading-8">{{ ArtLibrary.title_en }}</h1>
                 <span class="bg-yellow-300 border border-gray-300 px-1 rounded-lg text-xs">{{ ArtLibrary.type }}</span>
-                <p class="text-gray-100 border-t border-gray-400 mt-2"><span class="font-semibold">Title (Romaji): </span> {{ ArtLibrary.title_jp }}</p>
-                <p class="text-gray-100"><span class="font-semibold">Original: </span> {{ ArtLibrary.original }}</p>
-                <p class="text-gray-100"><span class="font-semibold">Series: </span> {{ ArtLibrary.series }}</p>
-                <p class="text-gray-100"><span class="font-semibold">Author / Character Designer: </span> {{ ArtLibrary.author }}</p>
-                <p class="text-gray-100"><span class="font-semibold">Studio: </span> {{ ArtLibrary.studio }}</p>
-                <p class="text-gray-100"><span class="font-semibold">Released Year: </span> {{ ArtLibrary.year }}</p>
-                <p class="text-gray-100"><span class="font-semibold">Language: </span> {{ ArtLibrary.lang }}</p>
-                <p class="text-gray-100"><span class="font-semibold">Page: </span> {{ ArtLibrary.page }}</p>
-                <p class="text-gray-100"><span class="font-semibold">Status: </span> {{ ArtLibrary.status }}</p>
-                <p class="text-gray-100 border-t border-gray-400 mt-2"><span class="font-semibold">Description: </span> {{ ArtLibrary.desc }}</p>
+                <table class="text-white w-[100%]">
+                    <tr>
+                        <td class="font-semibold border-t border-gray-400 mt-2 w-[25%]">Title (Romaji)</td>
+                        <td class="border-t border-gray-400 mt-2">: {{ ArtLibrary.title_jp }}</td>
+                    </tr>
+                    <tr>
+                        <td class="font-semibold">Original</td>
+                        <td>: {{ ArtLibrary.original }}</td>
+                    </tr>
+                    <tr>
+                        <td class="font-semibold">Series</td>
+                        <td>: {{ ArtLibrary.series }}</td>
+                    </tr>
+                    <tr>
+                        <td class="font-semibold">Author / Character Designer</td>
+                        <td>: {{ ArtLibrary.author }}</td>
+                    </tr>
+                    <tr>
+                        <td class="font-semibold">Studio</td>
+                        <td>: {{ ArtLibrary.studio }}</td>
+                    </tr>
+                    <tr>
+                        <td class="font-semibold">Released Year</td>
+                        <td>: {{ ArtLibrary.year }}</td>
+                    </tr>
+                    <tr>
+                        <td class="font-semibold">Language</td>
+                        <td>: {{ ArtLibrary.lang }}</td>
+                    </tr>
+                    <tr>
+                        <td class="font-semibold">Page</td>
+                        <td>: {{ ArtLibrary.page }}</td>
+                    </tr>
+                    <tr>
+                        <td class="font-semibold">Status</td>
+                        <td>: {{ ArtLibrary.status }}</td>
+                    </tr>
+                    <tr>
+                        <td class="font-semibold border-t border-gray-400 mt-2">Description</td>
+                        <td class="border-t border-gray-400 mt-2">: {{ ArtLibrary.desc }}</td>
+                    </tr>
+                </table>
             </div>
             <div class="absolute top-0 w-[15%] h-[80%] mx-[10%] mt-14 rounded-lg">
                 <img :src="`/img/library/${ArtLibrary.image_path}`" alt="" class="h-full w-full object-cover rounded-lg" loading="lazy">
@@ -71,15 +103,44 @@
                                         </span>
                                     <span class="bg-yellow-300 border border-gray-800 px-1 rounded-lg text-xs h-fit justify-center text-center">{{ ArtLib.type }}</span>
                                 </div>
-                                <p class="text-white text-xs"><span class="text-gray-200">Title (Romaji): </span> {{ ArtLib.title_jp }}</p>
-                                <p class="text-white text-xs"><span class="text-gray-200">Original: </span> {{ ArtLib.original }}</p>
-                                <p class="text-white text-xs"><span class="text-gray-200">Series: </span> {{ ArtLib.series }}</p>
-                                <p class="text-white text-xs"><span class="text-gray-200">Studio: </span> {{ ArtLib.studio }}</p>
-                                <p class="text-white text-xs"><span class="text-gray-200">Released Year: </span> {{ ArtLib.year }}</p>
-                                <p class="text-white text-xs"><span class="text-gray-200">Language: </span> {{ ArtLib.lang }}</p>
-                                <p class="text-white text-xs"><span class="text-gray-200">Page: </span> {{ ArtLib.page }}</p>
-                                <p class="text-white text-xs"><span class="text-gray-200">Status: </span> {{ ArtLib.status }}</p>
-                                <p class="text-white text-xs"><span class="text-gray-200">Description: </span> {{ ArtLib.desc }}</p>
+                                <table class="text-white text-xs">
+                                    <tr>
+                                        <td><span class="text-gray-200">Title (Romaji)</span></td>
+                                        <td>: {{ ArtLib.title_jp }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="text-gray-200">Original</span></td>
+                                        <td>: {{ ArtLib.original }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="text-gray-200">Series</span></td>
+                                        <td>: {{ ArtLib.series }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="text-gray-200">Studio</span></td>
+                                        <td>: {{ ArtLib.studio }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="text-gray-200">Released Year</span></td>
+                                        <td>: {{ ArtLib.year }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="text-gray-200">Language</span></td>
+                                        <td>: {{ ArtLib.lang }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="text-gray-200">Page</span></td>
+                                        <td>: {{ ArtLib.page }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="text-gray-200">Status</span></td>
+                                        <td>: {{ ArtLib.status }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="text-gray-200">Description</span></td>
+                                        <td>: {{ ArtLib.desc }}</td>
+                                    </tr>
+                                </table>
                                 <div class="flex justify-evenly mt-4">
                                     <a :href="ArtLib.link" target="_blank" class="bg-yellow-300 hover:bg-yellow-200 text-gray-800 font-bold py-2 px-4 rounded-lg inline-flex items-center">
                                         <svg class="mr-2" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">

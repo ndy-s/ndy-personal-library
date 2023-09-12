@@ -9,7 +9,7 @@
                             <img src="https://images.tokopedia.net/img/cache/700/product-1/2017/5/21/670934/670934_4bad1661-f5f4-4fb0-af10-ad905dcac877.jpg" alt="Project 1" class="w-full h-64 object-cover object-center">
                             <div class="p-4 text-center">
                                 <h3 class="text-xl font-bold mb-2 text-white">Art Library</h3>
-                                <p class="text-gray-300">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                <p class="text-gray-300">A collection of illustrations, production books, and more!</p>
                             </div>
                         </div>
                     </Link>

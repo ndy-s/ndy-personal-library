@@ -68,7 +68,6 @@ class SettingsController extends Controller {
                 'path',
             ];
 
-
             foreach($nullableFields as $field) {
                 if (!is_null($request->input($field))) {
                     $attributes = array_merge($attributes, [$field => $request->input($field)]);
@@ -119,6 +118,10 @@ class SettingsController extends Controller {
         $attributes = $this->dataProcess($request);
 
         $artLibrary = ArtLibrary::findOrFail($attributes['id']);
+        $image_path = public_path("img/library/{$artLibrary->image_path}");
+        if (!str_contains($image_path ,'default.webp')) {
+            unlink($image_path);
+        }
         $artLibrary->update($attributes);
 
         $subArtLibrary = $artLibrary->subArtLibraries()->first();

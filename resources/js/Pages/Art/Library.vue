@@ -1,24 +1,56 @@
 <template>
     <Layout>
         <div class="mt-10">
-            <div class="flex ml-12 w-[70%] z-50 mb-5 transition duration-200 ease-in-out" :class="{'fixed top-16 p-2 rounded-b-xl bg-gray-800 bg-opacity-[80%]': isVisible}">
-                <select v-model="typeCat" @change="onChange" class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-100 bg-gray-800 border border-gray-500 rounded-l-lg hover:bg-gray-900 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:hover:bg-gray-800 dark:focus:border-blue-500 dark:text-white dark:border-gray-800" title="Category Option">
-                    <option value="" selected>No Category</option>
-                    <option v-for="(type, index) in types" :key="index" :value="Object.values(type).toString()">{{ Object.values(type).toString() }}</option>
+            <div
+                class="flex ml-12 w-[70%] z-50 mb-5 transition duration-200 ease-in-out"
+                :class="{'fixed top-16 p-2 rounded-b-xl bg-gray-800 bg-opacity-[80%]': isVisible}"
+            >
+                <select
+                    v-model="typeCat"
+                    @change="onChange"
+                    class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-100 bg-gray-800 border border-gray-500 rounded-l-lg hover:bg-gray-900 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:hover:bg-gray-800 dark:focus:border-blue-500 dark:text-white dark:border-gray-800"
+                    title="Category Option"
+                >
+                    <option
+                        value=""
+                        selected
+                    >No Category</option>
+                    <option
+                        v-for="(type, index) in types"
+                        :key="index"
+                        :value="Object.values(type).toString()"
+                    >{{ Object.values(type).toString() }}</option>
                 </select>
                 <div class="relative w-full">
-                    <input type="search" v-model="search" class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-l-gray-800  dark:border-gray-800 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Type to search..." required>
-                    <button @click="() => search = ''" class="absolute top-0 right-0 p-2.5 text-sm font-medium text-white rounded-r-lg border bg-gray-800 border-gray-500 focus:ring-2 hover:bg-gray-900 focus:outline-none focus:ring-blue-500 dark:focus:ring-blue-800" title="Clear Search Button" :disabled="search === ''">
+                    <input
+                        type="search"
+                        v-model="search"
+                        class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-l-gray-800  dark:border-gray-800 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+                        placeholder="Type to search..."
+                        required
+                    >
+                    <button
+                        @click="() => search = ''"
+                        class="absolute top-0 right-0 p-2.5 text-sm font-medium text-white rounded-r-lg border bg-gray-800 border-gray-500 focus:ring-2 hover:bg-gray-900 focus:outline-none focus:ring-blue-500 dark:focus:ring-blue-800"
+                        title="Clear Search Button"
+                        :disabled="search === ''"
+                    >
                         <span class="p-1 text-white"><b>&times;</b></span>
                         <span class="sr-only">Clear</span>
                     </button>
                 </div>
             </div>
 
-            <div class="flex" :class="{'mt-24': isVisible}">
+            <div
+                class="flex"
+                :class="{'mt-24': isVisible}"
+            >
                 <h1 class="text-white flex text-[30px] font-bold w-[70%] ml-12">
                     Art Library
-                    <span class="text-[30px] flex font-normal text-white" v-if="!filteredArtLibraryData.length">: Data not Found!</span>
+                    <span
+                        class="text-[30px] flex font-normal text-white"
+                        v-if="!filteredArtLibraryData.length"
+                    >: Data not Found!</span>
                 </h1>
                 <h1 class="w-[25%] mx-5">
                     <span class="text-white text-[30px] font-bold">Recently Updated</span>
@@ -27,20 +59,53 @@
 
             <div class="flex">
                 <div class="grid 2xl:grid-cols-4 lg:grid-cols-2 mt-5 gap-8 ml-12 mb-10 w-[70%]">
-                    <template v-for="(ArtLib, index) in filteredArtLibraryData" :key="index">
+                    <template
+                        v-for="(ArtLib, index) in filteredArtLibraryData"
+                        :key="index"
+                    >
                         <div class="relative">
-                            <div class="relative bg-gray-700 rounded-lg shadow-md transition duration-400 ease-in-out transform" :class="[{'-translate-y-2 shadow-lg': hiddenDivs[index]}]">
-                                <button @click="typeCat = $event.target.value; onChange();" class="absolute font-bold text-xs m-2 text-gray-800 border-gray-900 bg-yellow-200 bg-opacity-80 border px-1 start-0 rounded-xl p-1 z-10" :title="'Category: '+ArtLib.type" :value="ArtLib.type">{{ ArtLib.type }}</button>
+                            <div
+                                class="relative bg-gray-700 rounded-lg shadow-md transition duration-400 ease-in-out transform"
+                                :class="[{'-translate-y-2 shadow-lg': hiddenDivs[index]}]"
+                            >
+                                <button
+                                    @click="typeCat = $event.target.value; onChange();"
+                                    class="absolute font-bold text-xs m-2 text-gray-800 border-gray-900 bg-yellow-200 bg-opacity-80 border px-1 start-0 rounded-xl p-1 z-10"
+                                    :title="'Category: '+ArtLib.type"
+                                    :value="ArtLib.type"
+                                >{{ ArtLib.type }}</button>
                                 <Link :href="`/art/library/librarydetail-${ArtLib.id}`">
-                                    <img class="w-full h-64 object-cover rounded-t-lg filter grayscale transition duration-300 ease-in-out text-white" :src="`/img/library/${ArtLib.image_path}`" loading="lazy" @load="$event.target.complete ? $event.target.nextElementSibling.classList.add('hidden') : null;" @mouseover="showHiddenDiv(index, $event)" @mouseenter.once="infoLoad(index)" @mouseout="hiddenDivs[index] = false" :class="[{'filter-none scale-105 shadow-xl': hiddenDivs[index]}]" alt="">
+                                    <img
+                                        class="w-full h-64 object-cover rounded-t-lg filter grayscale transition duration-300 ease-in-out text-white"
+                                        :src="`/img/library/${ArtLib.image_path}`"
+                                        loading="lazy"
+                                        @load="$event.target.complete ? $event.target.nextElementSibling.classList.add('hidden') : null;"
+                                        @mouseover="showHiddenDiv(index, $event)"
+                                        @mouseenter.once="infoLoad(index)"
+                                        @mouseout="hiddenDivs[index] = false"
+                                        :class="[{'filter-none scale-105 shadow-xl': hiddenDivs[index]}]"
+                                        alt=""
+                                    >
                                     <PulseLoading class="absolute ml-[47%]"/>
                                 </Link>
                                 <div class="p-4 border-t-8 border-green-400">
-                                    <h4 class="font-semibold text-white text-lg line-clamp-2 h-14 cursor-pointer hover:text-green-400 transition duration-400 ease-in-out" :title="ArtLib.title_en"><Link :href="`/art/library/librarydetail-${ArtLib.id}`">{{ ArtLib.title_en }}</Link></h4>
+                                    <h4
+                                        class="font-semibold text-white text-lg line-clamp-2 h-14 cursor-pointer hover:text-green-400 transition duration-400 ease-in-out"
+                                        :title="ArtLib.title_en"
+                                    ><Link :href="`/art/library/librarydetail-${ArtLib.id}`">{{ ArtLib.title_en }}</Link></h4>
                                 </div>
                             </div>
-                            <div class="absolute rounded-xl left-3/4 z-10 w-[300px] h-auto right-0 p-3 bg-gray-600 transition duration-300 ease-in-out" :class="[{'top-32': !infoBellow}, {'top-[-100px]': infoBellow}]" v-if="hiddenDivs[index]" @mouseover="hiddenDivs[index] = true" @mouseout="hiddenDivs[index] = false">
-                                <PulseLoading v-if="showLoader[index]" class="relative col-span-4 items-center origin-center mx-[49%]"/>
+                            <div
+                                class="absolute rounded-xl left-3/4 z-10 w-[300px] h-auto right-0 p-3 bg-gray-600 transition duration-300 ease-in-out"
+                                :class="[{'top-32': !infoBellow}, {'top-[-100px]': infoBellow}]"
+                                v-if="hiddenDivs[index]"
+                                @mouseover="hiddenDivs[index] = true"
+                                @mouseout="hiddenDivs[index] = false"
+                            >
+                                <PulseLoading
+                                    v-if="showLoader[index]"
+                                    class="relative col-span-4 items-center origin-center mx-[49%]"
+                                />
                                 <div v-if="!showLoader[index]" class="min-h-[200px]">
                                     <p class="text-white text-sm font-bold">
                                         {{ ArtLib.title_en }}

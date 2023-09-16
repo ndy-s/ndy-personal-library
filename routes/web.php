@@ -33,12 +33,12 @@ Route::get('/art/library/librarydetail-{artLibrary}', [LibraryController::class,
 //    return Inertia::render('Settings');
 //});
 
-Route::get('/settings', [SettingsController::class, 'index']);
-Route::post('/settings-library-create', [SettingsController::class, 'libraryCreate']);
-Route::post('/settings-library-update', [SettingsController::class, 'libraryUpdate']);
-Route::delete('/settings-library-destroy', [SettingsController::class, 'libraryDelete']);
+Route::get('art/libraryconfiguration', [SettingsController::class, 'index']);
+Route::post('art/libraryconfiguration-library-create', [SettingsController::class, 'libraryCreate']);
+Route::post('art/libraryconfiguration-library-update', [SettingsController::class, 'libraryUpdate']);
+Route::delete('art/libraryconfiguration-library-destroy', [SettingsController::class, 'libraryDelete']);
 
-Route::post('/settings-library-subcreate', [SettingsController::class, 'librarySubCreate']);
-Route::post('/settings-library-relatedcreate', [SettingsController::class, 'libraryRelatedCreate']);
+Route::post('art/libraryconfiguration-library-subcreate', [SettingsController::class, 'librarySubCreate']);
+Route::post('art/libraryconfiguration-library-relatedcreate', [SettingsController::class, 'libraryRelatedCreate']);
 
 

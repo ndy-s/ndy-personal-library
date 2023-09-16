@@ -21,7 +21,6 @@
                     :filters="filters"
                     :params="params"
                     :subDataFunc="subDataFunc"
-                    :relatedDataFunc="relatedDataFunc"
                     :editFunc="editFunc"
                     :deleteFunc="deleteFunc"
                 />
@@ -228,16 +227,15 @@
             </div>
         </div>
 
-        <!--Related Data Modal-->
     </Layout>
 </template>
 
 <script setup>
-    import Layout from "../Shared/Layout.vue";
+    import Layout from "../../Shared/Layout.vue";
     import { debounce } from "lodash/function";
     import {reactive, ref, watch} from "vue";
     import { router, useForm } from "@inertiajs/vue3";
-    import SettingsTable from "../Shared/SettingsTable.vue";
+    import SettingsTable from "../../Shared/SettingsTable.vue";
 
     const props = defineProps({
         AllArtLibrary: Object,
@@ -370,7 +368,7 @@
 
     let submit = () => {
         if (editMode.value === false && deleteMode.value === false) {
-            form.post('/settings-library-create', {
+            form.post('libraryconfiguration-library-create', {
                 preserveScroll: true,
                 onSuccess: () => {
                     form.reset();
@@ -380,7 +378,7 @@
                 }
             });
         } else if (editMode.value === true) {
-            form.post('/settings-library-update', {
+            form.post('libraryconfiguration-library-update', {
                 preserveScroll: true,
                 onSuccess: () => {
                     form.reset();
@@ -390,7 +388,7 @@
                 }
             });
         } else {
-            form.delete('/settings-library-destroy', {
+            form.delete('libraryconfiguration-library-destroy', {
                 preserveScroll: true,
                 onSuccess: () => {
                     deleteMode.value = false;
@@ -422,17 +420,12 @@
             requestData[`data${index}`] = data;
         });
 
-        router.post('/settings-library-subcreate', requestData, {
+        router.post('libraryconfiguration-library-subcreate', requestData, {
             preserveScroll: true,
             onSuccess: () => {
                 subData.value = false;
                 formData.splice(0);
             }
         });
-    }
-
-    // Related Data Modal
-    const relatedDataFunc = (id) => {
-        console.log(id);
     }
 </script>

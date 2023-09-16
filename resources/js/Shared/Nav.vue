@@ -29,7 +29,7 @@
                             <div v-if="isOpen1" class="absolute z-30 right-0 mt-2" :class="{'hidden': !isOpen1}">
                                 <div class="bg-white rounded-lg shadow-lg py-2 w-48">
                                     <a href="#" class="block text-gray-600 font-semibold px-4 py-2 | hover:text-white hover:bg-gray-600">Your profile</a>
-                                    <Link href="/settings" class="block text-gray-600 font-semibold px-4 py-2 | hover:text-white hover:bg-gray-600">Settings</Link>
+                                    <Link href="#" class="block text-gray-600 font-semibold px-4 py-2 | hover:text-white hover:bg-gray-600">Settings</Link>
                                     <a href="#" class="block text-gray-600 font-semibold px-4 py-2 | hover:text-white hover:bg-gray-600">Sign out</a>
                                 </div>
                             </div>

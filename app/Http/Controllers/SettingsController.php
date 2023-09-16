@@ -36,7 +36,7 @@ class SettingsController extends Controller {
             $query->orderBy(request('field'), request('direction'));
         }
 
-        return Inertia::render('Settings', [
+        return Inertia::render('Art/LibraryConfiguration', [
             'AllArtLibrary' => $query->get(),
             'ArtLibrary' => $query->orderBy('created_at', 'desc')->paginate('10')->withQueryString(),
             'SubArtLibrary' => SubArtLibrary::all(),
@@ -116,10 +116,10 @@ class SettingsController extends Controller {
 
     public function libraryUpdate(Request $request) {
         $attributes = $this->dataProcess($request);
-
         $artLibrary = ArtLibrary::findOrFail($attributes['id']);
         $image_path = public_path("img/library/{$artLibrary->image_path}");
-        if (!str_contains($image_path ,'default.webp')) {
+
+        if (!str_contains($image_path ,'default.webp') && $attributes["image_path"] != $artLibrary->image_path) {
             unlink($image_path);
         }
         $artLibrary->update($attributes);

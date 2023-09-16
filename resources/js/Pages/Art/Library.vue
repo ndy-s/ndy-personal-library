@@ -170,8 +170,15 @@
                             </div>
                         </div>
                     </template>
-                    <PulseLoading class="relative 2xl:col-span-4 lg:col-span-2 mb-10 ml-[49%]" :class="{ 'hidden' : ArtLibrary.current_page === ArtLibrary.last_page }"/>
-                    <div class="col-span-4 mt-10 flex place-content-center" v-if="!filteredArtLibraryData.length">
+                    <PulseLoading
+                        class="relative 2xl:col-span-4 lg:col-span-2 mb-10 ml-[49%]"
+                        :class="{ 'hidden' : ArtLibrary.current_page === ArtLibrary.last_page }"
+                    />
+                    <div
+                        class="col-span-4 mt-10 flex place-content-center"
+                        v-if="!filteredArtLibraryData.length"
+                    >
+                        <!--Data not found symbol section-->
                         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
                             <defs></defs>
                             <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
@@ -187,25 +194,54 @@
                 </div>
                 <div class="top-0 w-[25%] mx-5 mt-5">
                     <div class="bg-gray-700 rounded-xl p-3">
-                        <div class="flex w-[100%] py-3 group" :class="{'border-b border-gray-400': index < 9}" v-for="(subRecent, index) in recent" :key="index">
-                            <h1 class="text-white my-auto text-xl font-bold border-b-4 border-green-300 leading-8 group-hover:text-green-400" v-if="index < 3"> 0{{index+1}} </h1>
-                            <h1 class="text-gray-300 my-auto text-xl font-bold group-hover:text-green-400" v-if="index > 2 && index < 9"> 0{{index+1}} </h1>
-                            <h1 class="text-gray-300 my-auto text-xl font-bold group-hover:text-green-400" v-if="index === 9"> {{index+1}} </h1>
-                            <Link :href="`/art/library/librarydetail-${subRecent.id}`" class="mx-5 my-auto">
-                                <img :src="`/img/library/${subRecent.image_path}`" class="w-[50px] h-[50px] min-w-[50px] min-h-[50px] rounded-lg transition duration-100 ease-in-out text-white hover:scale-110 shadow-xl" loading="lazy">
+                        <div
+                            class="flex w-[100%] py-3 group"
+                            :class="{'border-b border-gray-400': index < 9}"
+                            v-for="(subRecent, index) in recent"
+                            :key="index"
+                        >
+                            <h1
+                                class="text-white my-auto text-xl font-bold border-b-4 border-green-300 leading-8 group-hover:text-green-400"
+                                v-if="index < 3"
+                            > 0{{index+1}} </h1>
+                            <h1
+                                class="text-gray-300 my-auto text-xl font-bold group-hover:text-green-400"
+                                v-if="index > 2 && index < 9"
+                            > 0{{index+1}} </h1>
+                            <h1
+                                class="text-gray-300 my-auto text-xl font-bold group-hover:text-green-400"
+                                v-if="index === 9"
+                            > {{index+1}} </h1>
+                            <Link
+                                :href="`/art/library/librarydetail-${subRecent.id}`"
+                                class="mx-5 my-auto"
+                            >
+                                <img
+                                    :src="`/img/library/${subRecent.image_path}`"
+                                    class="w-[50px] h-[50px] min-w-[50px] min-h-[50px] rounded-lg transition duration-100 ease-in-out text-white hover:scale-110 shadow-xl"
+                                    loading="lazy"
+                                >
                             </Link>
                             <div class="w-[100%]">
-                                <Link :href="`/art/library/librarydetail-${subRecent.id}`" class="text-white font-semibold text-sm mb-1 hover:text-green-400 transition duration-400 ease-in-out line-clamp-2" :title="subRecent.title_en">{{ subRecent.title_en }}</Link>
+                                <Link
+                                    :href="`/art/library/librarydetail-${subRecent.id}`"
+                                    class="text-white font-semibold text-sm mb-1 hover:text-green-400 transition duration-400 ease-in-out line-clamp-2"
+                                    :title="subRecent.title_en"
+                                >{{ subRecent.title_en }}</Link>
                                 <div class="flex justify-between">
                                     <p class="text-gray-300 text-[12px]">{{ formatTime(subRecent.updated_at) }}</p>
-                                    <button @click="typeCat = $event.target.value; onChange();" class="bg-yellow-300 border border-gray-800 px-1 w-fit rounded-lg text-xs mr-1 text-[12px]" :title="'Category: '+subRecent.type" :value="subRecent.type">{{ subRecent.type }}</button>
+                                    <button
+                                        @click="typeCat = $event.target.value; onChange();"
+                                        class="bg-yellow-300 border border-gray-800 px-1 w-fit rounded-lg text-xs mr-1 text-[12px]"
+                                        :title="'Category: '+subRecent.type"
+                                        :value="subRecent.type"
+                                    >{{ subRecent.type }}</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--            <Card :ArtLibrary="ArtLibrary" :types="types" :filters="filters" :recent="recent" />-->
         </div>
     </Layout>
 </template>

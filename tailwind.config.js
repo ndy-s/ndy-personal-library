@@ -9,11 +9,16 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                midnight: {
-                    900: '#1A202C',
-                    800: '#2D3748',
-                    700: '#4A5568',
-                },
+                'custom-black-pearl': '#040D12',
+                'custom-prussian-blue': '#183D3D',
+                'custom-cadet-blue': '#5C8374',
+                'custom-gainsboro': '#93B1A6',
+            },
+            backgroundColor: {
+                'custom-black-pearl': '#040D12',
+                'custom-prussian-blue': '#183D3D',
+                'custom-cadet-blue': '#5C8374',
+                'custom-gainsboro': '#93B1A6',
             },
         },
     },

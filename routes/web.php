@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\LibraryController;
+use App\Http\Controllers\ArtLibraryController;
 use App\Http\Controllers\SettingsController;
 use App\Models\ArtLibrary;
 use Illuminate\Support\Facades\Route;
@@ -18,12 +18,12 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', fn () => Inertia::render('Art/ArtHome'));
+Route::get('/', fn () => Inertia::render('Home'));
 
-Route::get('/art/library', [LibraryController::class, 'index']);
-Route::post('/art/library', [LibraryController::class, 'index']);
+Route::get('art-library', [ArtLibraryController::class, 'index']);
+Route::post('art-library', [ArtLibraryController::class, 'index']);
 
-Route::get('/art/library/librarydetail-{artLibrary}', [LibraryController::class, 'detail']);
+Route::get('art-library/detail-{artLibrary}', [ArtLibraryController::class, 'detail']);
 
 //Route::get('/settings', function () {
 //    return Inertia::render('Settings');

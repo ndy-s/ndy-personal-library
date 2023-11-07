@@ -1,13 +1,9 @@
 <template>
     <section>
-        <Nav />
+        <slot name="nav" />
     </section>
 
     <section>
         <slot />
     </section>
 </template>
-
-<script setup>
-    import Nav from "./Nav.vue";
-</script>

@@ -28,7 +28,7 @@
     const imageShow = ref(false)
     setTimeout(() => {
         imageShow.value = true;
-    }, Math.random() * 700 + 300);
+    }, Math.random() * 300 + 100);
 </script>
 
 <style scoped>

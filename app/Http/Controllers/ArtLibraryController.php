@@ -1,17 +1,17 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\Models\ArtLibrary;
 use App\Models\SubArtLibrary;
 use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
-class LibraryController extends Controller
+
+class ArtLibraryController extends Controller
 {
     public function index(\Illuminate\Http\Request $request)
     {
         $page = $request->query('page', 1);
         if ($request->isMethod('get') && $page != 1) {
-            return redirect('/art/library?page=1');
+            return redirect('art-library?page=1');
         }
 
         $query = ArtLibrary::query()
@@ -37,7 +37,7 @@ class LibraryController extends Controller
 
         $artLibraries = $query->paginate(40);
 
-        return Inertia::render('Art/Library', [
+        return Inertia::render('Art/ArtLibrary', [
             'ArtLibrary' => $artLibraries,
             'types' => ArtLibrary::select('type')->distinct()->orderBy('type')->get(),
             'filters' => Request::only(['search']),
@@ -52,10 +52,11 @@ class LibraryController extends Controller
             ? $availableArtLibraries->random(12)
             : $availableArtLibraries;
 
-        return Inertia::render('Art/LibraryDetail', [
+        return Inertia::render('Art/ArtLibraryDetail', [
             'AllArtLibrary' => $randomArtLibraries,
             'ArtLibrary' => $artLibrary,
             'SubArtLibrary' => SubArtLibrary::where('art_library_id', $artLibrary->id)->get(),
+            'recent' => ArtLibrary::orderBy('updated_at', 'desc')->limit(10)->get(),
         ]);
     }
 }

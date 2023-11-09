@@ -5,7 +5,7 @@
         </template>
 
         <div class="mt-16 relative w-[100%] h-auto">
-            <img :src="`/img/library/${ArtLibrary.image_path}`" alt="" class="w-[100%] h-[60vh] object-cover blur-2xl z-[-10] clip-path opacity-50" loading="lazy">
+            <img :src="`/img/library/${ArtLibrary.image_path}`" class="w-[100%] h-[60vh] object-cover blur-2xl z-[-10] clip-path opacity-50">
             <div class="absolute top-0 mx-[27%] my-20 leading-7 w-[50%]">
                 <h1 class="text-white font-semibold text-[30px] mb-1 leading-8">{{ ArtLibrary.title_en }}</h1>
                 <span class="cursor-default text-gray-100 bg-green-400 bg-opacity-20 px-2 border border-green-400 rounded-sm text-xs font-bold h-fit justify-center text-center">{{ ArtLibrary.type }}</span>
@@ -54,7 +54,7 @@
                 </table>
             </div>
             <div class="absolute top-0 w-[15%] h-[80%] mx-[10%] mt-14 rounded-lg">
-                <img :src="`/img/library/${ArtLibrary.image_path}`" alt="" class="h-full w-full object-cover rounded-lg" loading="lazy">
+                <img :src="`/img/library/${ArtLibrary.image_path}`" class="h-full w-full object-cover rounded-lg" @click="openModal()">
             </div>
             <div class="absolute bg-gray-200 h-[55vh] w-[20%] top-0 right-0 bg-opacity-25 rounded-xl my-5 mx-5 p-5 overflow-auto">
                 <div class="border-b-2 p-2 w-[100%]" v-for="(subArtLib, index) in SubArtLibrary" :key="index">
@@ -88,10 +88,19 @@
             />
             <ArtDataRecentList :recent="recent" />
         </div>
+
+        <Transition>
+            <div v-if="showModal" @click="closeModal" class="fixed inset-0 flex items-center justify-center z-50 bg-opacity-50 bg-black transition-all ease-in-out duration-500">
+                <div class="bg-white p-4 rounded shadow">
+                    <img :src="`/img/library/${ArtLibrary.image_path}`" class="w-full h-auto">
+                </div>
+            </div>
+        </Transition>
     </Layout>
 </template>
 
 <script setup>
+    import { ref } from "vue";
     import Layout from "@/Shared/Layout.vue";
     import Nav from "@/Shared/Nav.vue";
     import ArtDataCards from "@/Shared/ArtDataCards.vue";
@@ -103,4 +112,32 @@
         'SubArtLibrary': Object,
         'recent': Object,
     });
+
+    const showModal = ref(false)
+    const openModal = () => {
+        showModal.value = true;
+        console.log('true')
+    };
+    const closeModal = () => {
+      showModal.value = false
+    };
 </script>
+
+<style scoped>
+    .v-enter-active,
+    .v-leave-active {
+        transition: opacity 0.1s, transform 0.1s;
+    }
+
+    .v-enter-from,
+    .v-leave-to {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    .v-enter-to,
+    .v-leave-from {
+        opacity: 1;
+        transform: scale(1);
+    }
+</style>

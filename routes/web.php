@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArtLibraryController;
-use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\ArtLibraryManagementController;
 use App\Models\ArtLibrary;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -22,19 +22,12 @@ Route::get('/', fn () => Inertia::render('Home'));
 
 Route::get('art-library', [ArtLibraryController::class, 'index']);
 Route::post('art-library', [ArtLibraryController::class, 'index']);
-
 Route::get('art-library/detail-{artLibrary}', [ArtLibraryController::class, 'detail']);
 
-//Route::get('/settings', function () {
-//    return Inertia::render('Settings');
-//});
-
-Route::get('art-library-management', [SettingsController::class, 'index']);
-Route::post('art-library-management-library-create', [SettingsController::class, 'libraryCreate']);
-Route::post('art-library-management-library-update', [SettingsController::class, 'libraryUpdate']);
-Route::delete('art-library-management-library-destroy', [SettingsController::class, 'libraryDelete']);
-
-Route::post('art-library-management-library-subcreate', [SettingsController::class, 'librarySubCreate']);
-Route::post('art-library-management-library-relatedcreate', [SettingsController::class, 'libraryRelatedCreate']);
+Route::get('art-library-management', [ArtLibraryManagementController::class, 'index']);
+Route::post('art-library-management-create', [ArtLibraryManagementController::class, 'libraryCreate']);
+Route::post('art-library-management-update', [ArtLibraryManagementController::class, 'libraryUpdate']);
+Route::delete('art-library-management-destroy', [ArtLibraryManagementController::class, 'libraryDelete']);
+Route::post('art-library-management-subcreate', [ArtLibraryManagementController::class, 'librarySubCreate']);
 
 

@@ -21,12 +21,12 @@ return new class extends Migration
             $table->string('studio')->default('N/A');
             $table->string('year')->default('N/A');
             $table->string('lang')->default('N/A');
-            $table->integer('page');
+            $table->integer('page')->default(0);
             $table->enum('status', ['Completed','Not Completed', 'N/A']);
             $table->string('source')->default('N/A');
             $table->string('desc')->default('N/A');
             $table->string('type');
-            $table->string('link')->default('N/A');
+            $table->string('link')->default('#');
             $table->string('path')->default('N/A');
             $table->string('image_path')->default('default.webp');
             $table->timestamps();

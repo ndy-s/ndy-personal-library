@@ -1,6 +1,6 @@
 <template>
     <div class="bg-gray-200">
-        <nav class="h-16 text-white bg-custom-black-pearl bg-opacity-[80%] flex fixed z-50 w-full top-0 items-center shadow">
+        <nav class="h-16 text-white bg-custom-black-pearl bg-opacity-[80%] flex fixed z-30 w-full top-0 items-center shadow">
             <div class="container mx-auto px-4">
                 <div class="flex justify-around items-center">
                     <Link href="/" class="flex flex-col items-center">
@@ -56,7 +56,7 @@
                             <div v-show="dropdownOpen" class="fixed inset-0 w-full h-screen z-20 bg-black opacity-25" @click="dropdownOpen = false"></div>
                             <div v-show="dropdownOpen" class="absolute z-30 mt-2 left-0" :class="{'hidden': !dropdownOpen}">
                                 <div class="bg-custom-prussian-blue rounded-lg shadow-lg py-2 w-60">
-                                    <Link href="art-library-management" class="block text-gray-200 font-semibold px-4 py-2 | hover:bg-gray-700 hover:text-white">Art Library Management</Link>
+                                    <Link href="/art-library-management" class="block text-gray-200 font-semibold px-4 py-2 | hover:bg-gray-700 hover:text-white">Art Library Management</Link>
                                     <Link href="#" class="block text-gray-200 font-semibold px-4 py-2 | hover:bg-gray-700 hover:text-white">#</Link>
                                     <Link href="#" class="block text-gray-200 font-semibold px-4 py-2 | hover:bg-gray-700 hover:text-white">#</Link>
                                 </div>

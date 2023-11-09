@@ -19,15 +19,10 @@
                     class="text-gray-300 my-auto text-xl font-bold group-hover:text-green-400"
                     v-if="index === 9"
                 > {{index+1}} </h1>
-                <Link
-                    :href="`/art-library/detail-${subRecent.id}`"
-                    class="mx-5 my-auto"
-                >
-                    <img
-                        :src="`/img/library/${subRecent.image_path}`"
-                        class="w-[50px] h-[50px] min-w-[50px] min-h-[50px] rounded-lg transition duration-100 ease-in-out text-white hover:scale-110 shadow-xl"
-                    >
-                </Link>
+                
+                <ArtDataRecentImg :artRecentLink="`/art-library/detail-${subRecent.id}`" :artRecentImage="`/img/library/${subRecent.image_path}`"/>
+
+
                 <div class="w-[100%]">
                     <Link
                         :href="`/art-library/detail-${subRecent.id}`"
@@ -53,6 +48,7 @@
 
 <script setup>
     import moment from "moment";
+    import ArtDataRecentImg from "@/Shared/ArtDataRecentImg.vue";
 
     const props = defineProps({
         recent: Object,

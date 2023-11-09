@@ -7,7 +7,7 @@ use App\Models\SubArtLibrary;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class SettingsController extends Controller {
+class ArtLibraryManagementController extends Controller {
     public function index() {
         request()->validate([
             'direction' => ['in:asc,desc'],
@@ -36,7 +36,7 @@ class SettingsController extends Controller {
             $query->orderBy(request('field'), request('direction'));
         }
 
-        return Inertia::render('Art/LibraryConfiguration', [
+        return Inertia::render('Art/ArtLibraryManagement', [
             'AllArtLibrary' => $query->get(),
             'ArtLibrary' => $query->orderBy('created_at', 'desc')->paginate('10')->withQueryString(),
             'SubArtLibrary' => SubArtLibrary::all(),
@@ -48,7 +48,6 @@ class SettingsController extends Controller {
         try {
             $attributes = $request->validate([
                 'title_en' => 'required',
-                'page' => 'required',
                 'status' => 'required',
                 'type' => 'required',
             ]);
@@ -61,6 +60,7 @@ class SettingsController extends Controller {
                 'author',
                 'studio',
                 'year',
+                'page',
                 'lang',
                 'source',
                 'desc',
@@ -71,6 +71,8 @@ class SettingsController extends Controller {
             foreach($nullableFields as $field) {
                 if (!is_null($request->input($field))) {
                     $attributes = array_merge($attributes, [$field => $request->input($field)]);
+                } else if (is_null($request->input($field)) && $field == 'page') {
+                    $attributes = array_merge($attributes, [$field => 0]);
                 } else if (is_null($request->input($field)) && $request->has('id')) {
                     $attributes = array_merge($attributes, [$field => 'N/A']);
                 }
@@ -102,9 +104,9 @@ class SettingsController extends Controller {
 
             $artLibrary = ArtLibrary::create($attributes);
             $subArtLibrary = new SubArtLibrary([
-                'title' => $request->input('title_en'),
-                'type' => 'Sub',
-                'link' => $request->input('link')
+                'title' => $request->input('title_en') ?? 'N/A',
+                'sub_desc' => $request->input('desc') ?? 'N/A',
+                'link' => $request->input('link') ?? '#'
             ]);
 
             $artLibrary->subArtLibraries()->save($subArtLibrary);
@@ -126,9 +128,9 @@ class SettingsController extends Controller {
 
         $subArtLibrary = $artLibrary->subArtLibraries()->first();
         $subArtLibrary->update([
-            'title' => $request->input('title_en'),
-            'type' => 'Sub',
-            'link' => $request->input('link')
+            'title' => $request->input('title_en') ?? 'N/A',
+            'sub_desc' => $request->input('desc') ?? 'N/A',
+            'link' => $request->input('link') ?? '#'
         ]);
 
         return back()->withInput();
@@ -147,21 +149,16 @@ class SettingsController extends Controller {
 
     public function librarySubCreate(Request $request) {
         $artLibrary = ArtLibrary::findOrFail($request->data0['id']);
-        SubArtLibrary::whereIn('id', SubArtLibrary::where('art_library_id', $request->data0['id'])->pluck('id')->toArray())
-            ->delete();
+        SubArtLibrary::whereIn('id', SubArtLibrary::where('art_library_id', $request->data0['id'])->pluck('id')->toArray())->delete();
 
         foreach ($request->all() as $key) {
             $subArtLibrary = new SubArtLibrary([
                 'title' => $key['title'] ?? 'N/A',
                 'sub_desc' => $key['sub_desc'] ?? 'N/A',
-                'link' => $key['link'],
+                'link' => $key['link'] ?? '#',
             ]);
 
             $artLibrary->subArtLibraries()->save($subArtLibrary);
         }
-    }
-
-    public function libraryRelatedCreate(Request $request) {
-        dd($request);
     }
 }

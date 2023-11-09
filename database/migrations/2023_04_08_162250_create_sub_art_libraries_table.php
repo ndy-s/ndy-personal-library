@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignIdFor(ArtLibrary::class);
             $table->string('title')->default('N/A');
             $table->string('sub_desc')->default('N/A');
-            $table->string('link')->nullable();
+            $table->string('link')->default('#');
             $table->timestamps();
         });
     }

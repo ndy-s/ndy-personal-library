@@ -51,11 +51,12 @@
         </div>
     </Layout>
 </template>
+
 <script setup>
     import { onMounted, onUnmounted, ref, computed, watch } from "vue";
     import { router } from "@inertiajs/vue3";
     import { throttle } from "lodash/function";
-    
+
     import Layout from "@/Shared/Layout.vue";
     import Nav from "@/Shared/Nav.vue";
     import DataCards from "@/Shared/DataCards.vue";

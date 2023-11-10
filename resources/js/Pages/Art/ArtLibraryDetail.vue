@@ -82,11 +82,11 @@
         </div>
 
         <div class="flex bottom-0">
-            <ArtDataCards 
+            <DataCards 
                 :ArtLibrary="ArtLibrary" 
                 :filteredArtLibraryData="AllArtLibrary"
             />
-            <ArtDataRecentList :recent="recent" />
+            <DataRecentList :recent="recent" />
         </div>
 
         <Transition>
@@ -103,8 +103,8 @@
     import { ref } from "vue";
     import Layout from "@/Shared/Layout.vue";
     import Nav from "@/Shared/Nav.vue";
-    import ArtDataCards from "@/Shared/ArtDataCards.vue";
-    import ArtDataRecentList from "@/Shared/ArtDataRecentList.vue";
+    import DataCards from "@/Shared/DataCards.vue";
+    import DataRecentList from "@/Shared/DataRecentList.vue";
 
     const props = defineProps({
         'AllArtLibrary': Object,
@@ -116,7 +116,6 @@
     const showModal = ref(false)
     const openModal = () => {
         showModal.value = true;
-        console.log('true')
     };
     const closeModal = () => {
       showModal.value = false

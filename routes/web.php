@@ -2,10 +2,11 @@
 
 use App\Http\Controllers\ArtLibraryController;
 use App\Http\Controllers\ArtLibraryManagementController;
-use App\Models\ArtLibrary;
+use App\Http\Controllers\ArtCourseController;
+use App\Http\Controllers\ArtCourseManagementController;
+
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,7 @@ use Illuminate\Http\Request;
 
 Route::get('/', fn () => Inertia::render('Home'));
 
+// Art Library
 Route::get('art-library', [ArtLibraryController::class, 'index']);
 Route::post('art-library', [ArtLibraryController::class, 'index']);
 Route::get('art-library/detail-{artLibrary}', [ArtLibraryController::class, 'detail']);
@@ -30,4 +32,8 @@ Route::post('art-library-management-update', [ArtLibraryManagementController::cl
 Route::delete('art-library-management-destroy', [ArtLibraryManagementController::class, 'libraryDelete']);
 Route::post('art-library-management-subcreate', [ArtLibraryManagementController::class, 'librarySubCreate']);
 
+// Art Course
+Route::get('art-course', [ArtCourseController::class, 'index']);
+
+Route::get('art-course-management', [ArtCourseManagementController::class, 'index']);
 

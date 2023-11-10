@@ -27,6 +27,7 @@ class ArtLibraryController extends Controller
                         ->orWhere('lang', 'LIKE', "%{$search}%")
                         ->orWhere('page', 'LIKE', "%{$search}%")
                         ->orWhere('status', 'LIKE', "%{$search}%")
+                        ->orWhere('source', 'LIKE', "%{$search}%")
                         ->orWhere('desc', 'LIKE', "%{$search}%");
                 });
             })

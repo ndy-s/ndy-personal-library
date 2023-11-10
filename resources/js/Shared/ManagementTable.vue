@@ -4,41 +4,20 @@
             <thead>
                 <tr>
                     <ManagementTableHead columnTitle="Action"/>
-                    <th scope="col" class="w-3/12 text-xs font-semibold tracking-wider text-white uppercase font-mono">
-                        <span class="inline-flex px-6 w-full justify-between" @click="sort('title_en')">
-                            Title
-                            <svg v-if="params.field === 'title_en' && params.direction === 'asc'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z"/>
-                            </svg>
-                            <svg v-if="params.field === 'title_en' && params.direction === 'desc'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h7a1 1 0 100-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM15 8a1 1 0 10-2 0v5.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L15 13.586V8z"/>
-                            </svg>
-                        </span>
-                    </th>
-                    <th scope="col" class="w-3/12 text-xs font-semibold tracking-wider text-white uppercase font-mono">
-                        <span class="inline-flex px-6 w-full justify-between" @click="sort('original')">
-                            Original
-                            <svg v-if="params.field === 'original' && params.direction === 'asc'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z"/>
-                            </svg>
-                            <svg v-if="params.field === 'original' && params.direction === 'desc'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h7a1 1 0 100-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM15 8a1 1 0 10-2 0v5.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L15 13.586V8z"/>
-                            </svg>
-                        </span>
-                    </th>
-                    <ManagementTableHead columnTitle="Series"/>
-                    <ManagementTableHead columnTitle="Author"/>
-                    <ManagementTableHead columnTitle="Studio"/>
-                    <ManagementTableHead columnTitle="Year"/>
-                    <ManagementTableHead columnTitle="Language"/>
-                    <ManagementTableHead columnTitle="Page"/>
-                    <ManagementTableHead columnTitle="Status"/>
-                    <ManagementTableHead columnTitle="Source"/>
-                    <ManagementTableHead columnTitle="Description"/>
-                    <ManagementTableHead columnTitle="Type"/>
-                    <ManagementTableHead columnTitle="Link"/>
-                    <ManagementTableHead columnTitle="File Path"/>
-                    <ManagementTableHead columnTitle="Image Path"/>
+                    <ManagementTableHead 
+                        columnTitle="Title" 
+                        tableId="title_en" 
+                        :params="params"
+                        @sort="(val) => sort(val)" 
+                    />
+                    <ManagementTableHead 
+                        v-for="(head, index) in tableHead" 
+                        :key="index"
+                        :columnTitle="head.title" 
+                        :tableId="head.tableId == 'original' || head.tableId =='type' ? head.tableId : ''" 
+                        :params="params"
+                        @sort="(val) => sort(val)"
+                    />
                 </tr>
             </thead>
 
@@ -83,25 +62,16 @@
                                     {{ ArtLib.title_en }}
                                 </div>
                                 <div class="text-sm text-gray-200">
-                                    {{ ArtLib.title_jp }}
+                                    {{ ArtLib.title_jp ?? ArtLib.original}}
                                 </div>
                             </div>
                         </div>
-                    </td>
-                    <ManagementTableBody :columnData="ArtLib.original"/>
-                    <ManagementTableBody :columnData="ArtLib.series"/>
-                    <ManagementTableBody :columnData="ArtLib.author"/>
-                    <ManagementTableBody :columnData="ArtLib.studio"/>
-                    <ManagementTableBody :columnData="ArtLib.year"/>
-                    <ManagementTableBody :columnData="ArtLib.lang"/>
-                    <ManagementTableBody :columnData="ArtLib.page"/>
-                    <ManagementTableBody :columnData="ArtLib.status"/>
-                    <ManagementTableBody :columnData="ArtLib.source"/>
-                    <ManagementTableBody :columnData="ArtLib.desc"/>
-                    <ManagementTableBody :columnData="ArtLib.type"/>
-                    <ManagementTableBody :columnData="ArtLib.link"/>
-                    <ManagementTableBody :columnData="ArtLib.path"/>
-                    <ManagementTableBody :columnData="ArtLib.image_path"/>
+                    </td>                    
+                    <ManagementTableBody 
+                        v-for="(head, index) in tableHead" 
+                        :key="index"
+                        :columnData="ArtLib[head.tableId]"
+                    />
                 </tr>
                 <tr v-else>
                     <td class="py-6 px-6 text-lg font-semibold text-gray-200 whitespace-nowrap col-span-full text-center" colspan="17">
@@ -155,6 +125,7 @@
         editFunc: Function,
         deleteFunc: Function,
         form: Object,
+        tableHead: Object,
     });
 
     const sort = (field) => {

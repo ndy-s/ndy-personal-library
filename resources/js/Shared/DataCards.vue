@@ -20,7 +20,7 @@
                         {{ ArtLib.type }}
                     </button>
 
-                    <ArtDataCardImg 
+                    <DataCardImg 
                         :ArtLib="ArtLib"
                         v-model:hiddenDivs="hiddenDivs[index]"
                         @inside="isInsideCard[index]=true; hiddenDivs[index]=true;showHiddenDiv(index)"
@@ -56,15 +56,15 @@
                                 </span>
                                 <span class="cursor-default text-gray-100 bg-green-400 bg-opacity-20 px-2 border border-green-400 rounded-sm text-xs font-bold h-fit justify-center text-center">{{ ArtLib.type }}</span>
                             </div>
-                            <ArtDataCardDivText textKey="Title (Romaji)" :textValue="ArtLib.title_jp"/>
-                            <ArtDataCardDivText textKey="Original" :textValue="ArtLib.original"/>
-                            <ArtDataCardDivText textKey="Series" :textValue="ArtLib.series"/>
-                            <ArtDataCardDivText textKey="Studio" :textValue="ArtLib.studio"/>
-                            <ArtDataCardDivText textKey="Year" :textValue="ArtLib.year"/>
-                            <ArtDataCardDivText textKey="Language" :textValue="ArtLib.lang"/>
-                            <ArtDataCardDivText textKey="Page" :textValue="ArtLib.page"/>
-                            <ArtDataCardDivText textKey="Status" :textValue="ArtLib.status"/>
-                            <ArtDataCardDivText textKey="Description" :textValue="ArtLib.desc"/>
+                            <DataCardDivText textKey="Title (Romaji)" :textValue="ArtLib.title_jp"/>
+                            <DataCardDivText textKey="Original" :textValue="ArtLib.original"/>
+                            <DataCardDivText textKey="Series" :textValue="ArtLib.series"/>
+                            <DataCardDivText textKey="Studio" :textValue="ArtLib.studio"/>
+                            <DataCardDivText textKey="Year" :textValue="ArtLib.year"/>
+                            <DataCardDivText textKey="Language" :textValue="ArtLib.lang"/>
+                            <DataCardDivText textKey="Page" :textValue="ArtLib.page"/>
+                            <DataCardDivText textKey="Status" :textValue="ArtLib.status"/>
+                            <DataCardDivText textKey="Description" :textValue="ArtLib.desc"/>
                             <div class="flex justify-evenly mt-4">
                                 <a :href="ArtLib.link" target="_blank" class="bg-green-400 text-custom-black-pearl font-bold py-2 px-6 rounded-md inline-flex items-center">
                                     <svg class="mr-2" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -89,8 +89,8 @@
 <script setup>
     import { ref } from "vue";
     import PulseLoading from "@/Shared/PulseLoading.vue";
-    import ArtDataCardDivText from "@/Shared/ArtDataCardDivText.vue";
-    import ArtDataCardImg from "@/Shared/ArtDataCardImg.vue"
+    import DataCardDivText from "@/Shared/DataCardDivText.vue";
+    import DataCardImg from "@/Shared/DataCardImg.vue"
 
     const props = defineProps({
         ArtLibrary: Object,

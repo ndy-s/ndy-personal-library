@@ -20,7 +20,7 @@
                     v-if="index === 9"
                 > {{index+1}} </h1>
                 
-                <ArtDataRecentImg :artRecentLink="`/art-library/detail-${subRecent.id}`" :artRecentImage="`/img/library/${subRecent.image_path}`"/>
+                <DataRecentImg :artRecentLink="`/art-library/detail-${subRecent.id}`" :artRecentImage="`/img/library/${subRecent.image_path}`"/>
 
 
                 <div class="w-[100%]">
@@ -48,7 +48,7 @@
 
 <script setup>
     import moment from "moment";
-    import ArtDataRecentImg from "@/Shared/ArtDataRecentImg.vue";
+    import DataRecentImg from "@/Shared/DataRecentImg.vue";
 
     const props = defineProps({
         recent: Object,

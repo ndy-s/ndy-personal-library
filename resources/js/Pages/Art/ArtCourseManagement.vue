@@ -20,7 +20,6 @@
                     :subDataFunc="subDataFunc"
                     :editFunc="editFunc"
                     :deleteFunc="deleteFunc"
-                    :tableHead="tableHead"
                 />
             </div>
         </div>
@@ -63,6 +62,7 @@
 <script setup>
     import { reactive, ref, watch } from "vue";
     import { router, useForm } from "@inertiajs/vue3";
+    import { debounce } from "lodash/function";
 
     import Layout from "@/Shared/Layout.vue";
     import Nav from "@/Shared/Nav.vue";
@@ -80,65 +80,6 @@
         SubArtLibrary: Object,
         filters: Object,
     });
-
-    const tableHead = [
-        {
-            title: 'Original',
-            tableId: 'original'
-        },
-        {
-            title: 'Series',
-            tableId: 'series',
-        },        
-        {
-            title: 'Author',
-            tableId: 'author',
-        },        
-        {
-            title: 'Studio',
-            tableId: 'studio',
-        },        
-        {
-            title: 'Year',
-            tableId: 'year',
-        },        
-        {
-            title: 'Language',
-            tableId: 'lang',
-        },
-        {
-            title: 'Page',
-            tableId: 'page',
-        },
-        {
-            title: 'Status',
-            tableId: 'status',
-        },
-        {
-            title: 'Source',
-            tableId: 'soruce',
-        },
-        {
-            title: 'Description',
-            tableId: 'desc',
-        },
-        {
-            title: 'Type',
-            tableId: 'type'
-        },
-        {
-            title: 'Link',
-            tableId: 'link',
-        },
-        {
-            title: 'File Path',
-            tableId: 'path',
-        },
-        {
-            title: 'Image Path',
-            tableId: 'image_path'
-        }
-    ];
 
     const params = reactive({
         search: props.filters.search,

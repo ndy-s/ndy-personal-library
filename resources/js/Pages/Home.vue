@@ -25,6 +25,15 @@
                         <template #default>Art Course</template>
                         <template #content>A collection of art and animation courses!</template>
                     </HomeCard>
+
+                    <HomeCard 
+                        artHomeLink="art-tutorial-book"
+                        artHomeImage="https://i.ebayimg.com/images/g/akEAAOSwnBRgLJIm/s-l1200.webp"
+                        artHomeAlt="Art Course"
+                    >
+                        <template #default>Art Tutorial Book</template>
+                        <template #content>A collection of art and animation tutorial books!</template>
+                    </HomeCard>
                 </div>
             </div>
         </section>

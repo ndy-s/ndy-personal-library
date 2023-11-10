@@ -43,4 +43,14 @@ Route::post('art-course-management-update', [ArtCourseManagementController::clas
 Route::delete('art-course-management-destroy', [ArtCourseManagementController::class, 'courseDelete']);
 Route::post('art-course-management-subcreate', [ArtCourseManagementController::class, 'courseSubCreate']);
 
+// Art Tutorial Book
+Route::get('art-tutorial-book', [ArtTutorialBookController::class, 'index']);
+Route::post('art-tutorial-book', [ArtTutorialBookController::class, 'index']);
+Route::get('art-tutorial-book/detail-{artTutorialBook}', [ArtTutorialBookController::class, 'detail']);
+
+Route::get('art-tutorial-book-management', [ArtTutorialBookManagementController::class, 'index']);
+Route::post('art-tutorial-book-management-create', [ArtTutorialBookManagementController::class, 'tutorialBookCreate']);
+Route::post('art-tutorial-book-management-update', [ArtTutorialBookManagementController::class, 'tutorialBookUpdate']);
+Route::delete('art-tutorial-book-management-destroy', [ArtTutorialBookManagementController::class, 'tutorialBookDelete']);
+Route::post('art-tutorial-book-management-subcreate', [ArtTutorialBookManagementController::class, 'tutorialBookSubCreate']);
 

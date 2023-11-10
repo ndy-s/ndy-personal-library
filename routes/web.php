@@ -4,6 +4,8 @@ use App\Http\Controllers\ArtLibraryController;
 use App\Http\Controllers\ArtLibraryManagementController;
 use App\Http\Controllers\ArtCourseController;
 use App\Http\Controllers\ArtCourseManagementController;
+use App\Http\Controllers\ArtTutorialBookController;
+use App\Http\Controllers\ArtTutorialBookManagementController;
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;

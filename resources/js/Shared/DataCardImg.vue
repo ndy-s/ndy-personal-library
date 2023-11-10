@@ -1,11 +1,11 @@
 <template>
     <div class="w-full h-64">
-        <Link :href="`/art-library/detail-${ArtLib.id}`">
+        <Link :href="`/art-${imgSrc}/detail-${ArtLib.id}`">
             <Transition>
                 <img
                     v-if="imageShow"
                     class="w-full h-64 object-cover rounded-t-lg filter grayscale transition duration-300 ease-in-out text-white"
-                    :src="`/img/library/${ArtLib.image_path}`"
+                    :src="`/img/${imgSrc}/${ArtLib.image_path}`"
                     :class="[{'filter-none scale-105 shadow-xl': hiddenDivs}]"
                     @load="$event.target.complete ? $event.target.nextElementSibling.classList.add('hidden') : null;"
                     @mouseenter="$emit('inside')"
@@ -23,6 +23,7 @@
     import PulseLoading from "@/Shared/PulseLoading.vue";
     
     const props = defineProps({
+        imgSrc: String,
         ArtLib: Object,
         hiddenDivs: Boolean
     });

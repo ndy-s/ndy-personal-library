@@ -5,31 +5,23 @@
         </template>
 
         <div class="mt-16 relative w-[100%] h-auto">
-            <img :src="`/img/library/${ArtLibrary.image_path}`" class="w-[100%] h-[60vh] object-cover blur-2xl z-[-10] clip-path opacity-50">
+            <img :src="`/img/course/${ArtLibrary.image_path}`" class="w-[100%] h-[60vh] object-cover blur-2xl z-[-10] clip-path opacity-50">
             <div class="absolute top-0 mx-[27%] my-20 leading-7 w-[50%]">
                 <h1 class="text-white font-semibold text-[30px] mb-1 leading-8">{{ ArtLibrary.title_en }}</h1>
-                <span class="cursor-default text-gray-100 bg-green-400 bg-opacity-20 px-2 border border-green-400 rounded-sm text-xs font-bold h-fit justify-center text-center">{{ ArtLibrary.type }}</span>
+                <span class="cursor-default text-gray-100 bg-green-400 bg-opacity-20 px-2 border border-green-400 rounded-sm text-xs font-bold h-fit justify-center text-center">{{ ArtLibrary.publisher }}</span>
 
                 <table class="text-white mt-3">
-                    <tr>
-                        <td class="font-semibold">Title (Romaji)</td>
-                        <td> : {{ ArtLibrary.title_jp }}</td>
-                    </tr>
                     <tr>
                         <td class="font-semibold">Original</td>
                         <td> : {{ ArtLibrary.original }}</td>
                     </tr>
                     <tr>
-                        <td class="font-semibold">Series</td>
-                        <td> : {{ ArtLibrary.series }}</td>
+                        <td class="font-semibold">Publisher</td>
+                        <td> : {{ ArtLibrary.publisher }}</td>
                     </tr>
                     <tr>
                         <td class="font-semibold">Author / Character Designer</td>
                         <td> : {{ ArtLibrary.author }}</td>
-                    </tr>
-                    <tr>
-                        <td class="font-semibold">Studio</td>
-                        <td> : {{ ArtLibrary.studio }}</td>
                     </tr>
                     <tr>
                         <td class="font-semibold">Released Year</td>
@@ -40,8 +32,8 @@
                         <td> : {{ ArtLibrary.lang }}</td>
                     </tr>
                     <tr>
-                        <td class="font-semibold">Page</td>
-                        <td> : {{ ArtLibrary.page }}</td>
+                        <td class="font-semibold">Video</td>
+                        <td> : {{ ArtLibrary.video }}</td>
                     </tr>
                     <tr>
                         <td class="font-semibold">Status</td>
@@ -54,7 +46,7 @@
                 </table>
             </div>
             <div class="absolute top-0 w-[15%] h-[80%] mx-[10%] mt-14 rounded-lg">
-                <img :src="`/img/library/${ArtLibrary.image_path}`" class="h-full w-full object-cover rounded-lg" @click="openModal()">
+                <img :src="`/img/course/${ArtLibrary.image_path}`" class="h-full w-full object-cover rounded-lg" @click="openModal()">
             </div>
             <div class="absolute bg-gray-200 h-[55vh] w-[20%] top-0 right-0 bg-opacity-25 rounded-xl my-5 mx-5 p-5 overflow-auto">
                 <div class="border-b-2 p-2 w-[100%]" v-for="(subArtLib, index) in SubArtLibrary" :key="index">
@@ -83,17 +75,17 @@
 
         <div class="flex bottom-0">
             <DataCards 
-                imgSrc="library"
+                imgSrc="course"
                 :ArtLibrary="ArtLibrary" 
                 :filteredArtLibraryData="AllArtLibrary"
             />
-            <DataRecentList imgSrc="library" :recent="recent" />
+            <DataRecentList imgSrc="course" :recent="recent" />
         </div>
 
         <Transition>
             <div v-if="showModal" @click="closeModal" class="fixed inset-0 flex items-center justify-center z-50 bg-opacity-50 bg-black transition-all ease-in-out duration-500">
                 <div class="bg-white p-4 rounded shadow">
-                    <img :src="`/img/library/${ArtLibrary.image_path}`" class="w-full h-auto">
+                    <img :src="`/img/course/${ArtLibrary.image_path}`" class="w-full h-auto">
                 </div>
             </div>
         </Transition>

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ArtLibrary extends Model
+class SubArtCourse extends Model
 {
     use HasFactory;
 
@@ -13,7 +13,7 @@ class ArtLibrary extends Model
         'id'
     ];
 
-    public function subArtLibraries() {
-        return $this->hasMany(SubArtLibrary::class);
+    public function artCourse() {
+        return $this->belongsTo(ArtCourse::class);
     }
 }

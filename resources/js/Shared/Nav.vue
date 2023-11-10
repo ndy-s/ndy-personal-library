@@ -54,7 +54,7 @@
                                 <img src="https://yt3.ggpht.com/S1CwKMvi9D8aebYrU0F495z7gsKrPWKYB7SVQi0xLDC5FLS0aIlcNWVQz2a2qSa92pBzcqsMeAM=s88-c-k-c0x00ffffff-no-rj" alt="Logo">
                             </button>
                             <div v-show="dropdownOpen" class="fixed inset-0 w-full h-screen z-20 bg-black opacity-25" @click="dropdownOpen = false"></div>
-                            <div v-show="dropdownOpen" class="absolute z-30 mt-2 left-0" :class="{'hidden': !dropdownOpen}">
+                            <div v-show="dropdownOpen" class="absolute z-30 mt-2 left-0" :class="{'hidden': !dropdownOpen, 'right-0 left-auto': ArtLibrary }">
                                 <div class="bg-custom-prussian-blue rounded-lg shadow-lg py-2 w-60">
                                     <Link href="/art-library-management" class="block text-gray-200 font-semibold px-4 py-2 | hover:bg-gray-700 hover:text-white">Art Library Management</Link>
                                     <Link href="/art-course-management" class="block text-gray-200 font-semibold px-4 py-2 | hover:bg-gray-700 hover:text-white">Art Course Management</Link>

@@ -14,13 +14,14 @@
                         @mouseenter="isInsideCard[index]=true; hiddenDivs[index]=true;showHiddenDiv(index)"
                         @mouseleave="isInsideCard[index]=false; isInsideHiddenDiv[index]=false; hideHiddenDiv(index)"
                         class="absolute font-bold text-xs m-2 text-white bg-custom-black-pearl bg-opacity-70 border border-green-400 start-0 rounded-sm p-1 bottom-28 z-10"
-                        :title="'Category: '+ArtLib.type"
-                        :value="ArtLib.type"
+                        :title="'Category: '+ArtLib.type ?? ArtLib.publisher"
+                        :value="ArtLib.type ?? ArtLib.publisher"
                     >
-                        {{ ArtLib.type }}
+                        {{ ArtLib.type ?? ArtLib.publisher }}
                     </button>
 
                     <DataCardImg 
+                        :imgSrc="imgSrc"
                         :ArtLib="ArtLib"
                         v-model:hiddenDivs="hiddenDivs[index]"
                         @inside="isInsideCard[index]=true; hiddenDivs[index]=true;showHiddenDiv(index)"
@@ -31,7 +32,7 @@
                         <h4
                             class="font-semibold text-white text-md line-clamp-2 h-12 cursor-pointer"
                             :title="ArtLib.title_en"
-                        ><Link :href="`/art-library/detail-${ArtLib.id}`">{{ ArtLib.title_en }}</Link></h4>
+                        ><Link :href="`/art-${imgSrc}/detail-${ArtLib.id}`">{{ ArtLib.title_en }}</Link></h4>
                         <div class="flex justify-between">
                             <p class="text-gray-200 text-xs mt-2">{{ ArtLib.author }}</p>
                             <p class="text-gray-200 text-xs mt-2">{{ ArtLib.year }}</p>
@@ -54,7 +55,7 @@
                                 <span class="text-xs text-gray-100 max-w-[60%]">
                                     {{ ArtLib.author }}
                                 </span>
-                                <span class="cursor-default text-gray-100 bg-green-400 bg-opacity-20 px-2 border border-green-400 rounded-sm text-xs font-bold h-fit justify-center text-center">{{ ArtLib.type }}</span>
+                                <span class="cursor-default text-gray-100 bg-green-400 bg-opacity-20 px-2 border border-green-400 rounded-sm text-xs font-bold h-fit justify-center text-center">{{ ArtLib.type ?? ArtLib.publisher }}</span>
                             </div>
                             <DataCardDivText textKey="Title (Romaji)" :textValue="ArtLib.title_jp"/>
                             <DataCardDivText textKey="Original" :textValue="ArtLib.original"/>
@@ -93,6 +94,7 @@
     import DataCardImg from "@/Shared/DataCardImg.vue"
 
     const props = defineProps({
+        imgSrc: String,
         ArtLibrary: Object,
         filteredArtLibraryData: Object,
     });

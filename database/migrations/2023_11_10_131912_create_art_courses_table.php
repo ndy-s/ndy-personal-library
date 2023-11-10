@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('title_en')->default('N/A');
             $table->string('original')->default('N/A');
+            $table->string('publisher')->default('N/A');
             $table->string('author')->default('N/A');
             $table->string('year')->default('N/A');
             $table->string('lang')->default('N/A');
+            $table->integer('video')->default(0);
             $table->enum('status', ['Completed','Not Completed', 'N/A']);
             $table->string('source')->default('N/A');
             $table->string('desc')->default('N/A');

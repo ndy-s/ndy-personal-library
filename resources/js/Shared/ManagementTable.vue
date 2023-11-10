@@ -5,16 +5,10 @@
                 <tr>
                     <ManagementTableHead columnTitle="Action"/>
                     <ManagementTableHead 
-                        columnTitle="Title" 
-                        tableId="title_en" 
-                        :params="params"
-                        @sort="(val) => sort(val)" 
-                    />
-                    <ManagementTableHead 
                         v-for="(head, index) in tableHead" 
                         :key="index"
                         :columnTitle="head.title" 
-                        :tableId="head.tableId == 'original' || head.tableId =='type' ? head.tableId : ''" 
+                        :tableId="head.tableId == 'title_en' || head.tableId == 'original' || head.tableId =='type' ? head.tableId : ''" 
                         :params="params"
                         @sort="(val) => sort(val)"
                     />
@@ -53,28 +47,18 @@
                             </svg>
                         </button>
                     </td>
-                    <td class="py-3 px-6 whitespace-nowrap">
-                        <div class="flex items-center">
-                            <ManagementImg :imagePath="ArtLib.image_path" @showFull="(val) => openModal(val)"/>
-
-                            <div class="ml-4">
-                                <div class="text-sm font-semibold text-white">
-                                    {{ ArtLib.title_en }}
-                                </div>
-                                <div class="text-sm text-gray-200">
-                                    {{ ArtLib.title_jp ?? ArtLib.original}}
-                                </div>
-                            </div>
-                        </div>
-                    </td>                    
+                  
                     <ManagementTableBody 
                         v-for="(head, index) in tableHead" 
                         :key="index"
-                        :columnData="ArtLib[head.tableId]"
+                        :imgSrc="imgSrc"
+                        :tableId="head.tableId"
+                        :ArtLib="ArtLib"
+                        @showFull="(val) => openModal(val)"
                     />
                 </tr>
                 <tr v-else>
-                    <td class="py-6 px-6 text-lg font-semibold text-gray-200 whitespace-nowrap col-span-full text-center" colspan="17">
+                    <td class="py-6 px-6 text-lg font-semibold text-gray-200 whitespace-nowrap col-span-full text-center" :colspan="tableHead.length + 2">
                         Data Not Found!
                     </td>
                 </tr>
@@ -105,7 +89,7 @@
     <Transition>
         <div v-if="showModal" @click="closeModal" class="fixed inset-0 flex items-center justify-center z-50 bg-opacity-50 bg-black transition-all ease-in-out duration-500">
             <div class="bg-white p-4 rounded shadow">
-                <img :src="`/img/library/${imagePath}`" class="w-full h-auto">
+                <img :src="`/img/${imgSrc}/${imagePath}`" class="w-full h-auto">
             </div>
         </div>
     </Transition>
@@ -115,9 +99,9 @@
     import { ref } from "vue";
     import ManagementTableHead from '@/Shared/ManagementTableHead.vue';
     import ManagementTableBody from '@/Shared/ManagementTableBody.vue';
-    import ManagementImg from '@/Shared/ManagementImg.vue';
 
     const props = defineProps({
+        imgSrc: String,
         ArtLibrary: Object,
         filters: Object,
         params: Object,

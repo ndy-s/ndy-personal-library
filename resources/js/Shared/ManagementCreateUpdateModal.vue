@@ -21,7 +21,7 @@
                     <div class="grid gap-6 my-4 md:grid-cols-3">
                         <div 
                             class="h-[100px] w-[100px] mx-auto rounded-full block bg-center bg-cover bg-gray-900 border border-dashed border-green-400" 
-                            :style="{ 'background-image': editMode && form.previewImage == tempArtLib.image_path ? `url(img/library/${form.previewImage})` : `url(${form.previewImage})` }"
+                            :style="{ 'background-image': editMode && form.previewImage == tempArtLib.image_path ? `url(img/${imgSrc}/${form.previewImage})` : `url(${form.previewImage})` }"
                             @click="fileInput.click()"
                         ></div>
                         <div class="col-span-2">
@@ -50,111 +50,14 @@
                             </div>
                         </div>
                         <ManagementInputField 
+                            v-for="(input, index) in modalInput"
+                            :key="index"
                             :form="form"
-                            id="title_en"
-                            label="Title (English) *"
-                            placeholder="Shin Evangelion Movie Version Animation Genga Illustration Vol. 1"
-                            @formValue="(val) => form.title_en = val"
-                        />
-                        <ManagementInputField 
-                            :form="form"
-                            id="title_jp"
-                            label="Title (Romaji)"
-                            placeholder="Shin evu~angerion gekijō-ban animēshon genga-shū jōkan" 
-                            @formValue="(val) => form.title_jp = val"
-                        />
-                        <ManagementInputField 
-                            :form="form"
-                            id="original"
-                            label="Original"
-                            placeholder="シン・エヴァンゲリオン劇場版アニメーション原画集 上巻" 
-                            @formValue="(val) => form.original = val"
-                        />                        
-                        <ManagementInputField 
-                            :form="form"
-                            id="series"
-                            label="Series"
-                            placeholder="Evangelion: 3.0+1.0 Thrice Upon a Time" 
-                            @formValue="(val) => form.series = val"
-                        />                        
-                        <ManagementInputField 
-                            :form="form"
-                            id="author"
-                            label="Author / Character Designer"
-                            placeholder="Anno, Moyoco" 
-                            @formValue="(val) => form.author = val"
-                        />                        
-                        <ManagementInputField 
-                            :form="form"
-                            id="studio"
-                            label="Studio"
-                            placeholder="Khara" 
-                            @formValue="(val) => form.studio = val"
-                        />                        
-                        <ManagementInputField 
-                            :form="form"
-                            id="year"
-                            label="Released Year"
-                            placeholder="2022" 
-                            @formValue="(val) => form.year = val"
-                        />
-                        <ManagementInputField 
-                            :form="form"
-                            id="lang"
-                            label="Language"
-                            placeholder="Japanese" 
-                            @formValue="(val) => form.lang = val"
-                        />
-                        <ManagementInputField 
-                            :form="form"
-                            id="page"
-                            label="Page"
-                            placeholder="352" 
-                            @formValue="(val) => form.page = val"
-                        />
-                        <ManagementInputField 
-                            :form="form"
-                            id="status"
-                            label="Status *"
-                            placeholder="Choose a status" 
-                            :options="['Completed', 'Not Completed']"
-                            @formValue="(val) => form.status = val"
-                        />
-                        <ManagementInputField 
-                            :form="form"
-                            id="source"
-                            label="Source"
-                            placeholder="http://setteidreams.net/artbooks/" 
-                            @formValue="(val) => form.source = val"
-                        />
-                        <ManagementInputField 
-                            :form="form"
-                            id="desc"
-                            label="Description"
-                            placeholder="300 DPI" 
-                            @formValue="(val) => form.desc = val"
-                        />
-                        <ManagementInputField 
-                            :form="form"
-                            id="type"
-                            label="Type *"
-                            placeholder="Choose a type" 
-                            :options="['Booklet', 'Color Design', 'Illustration Book', 'Production Book', 'Production Sketches', 'Settei', 'Storyboard']"
-                            @formValue="(val) => form.type = val"
-                        />
-                        <ManagementInputField 
-                            :form="form"
-                            id="link"
-                            label="Google Drive Link"
-                            placeholder="https://drive.google.com/drive/folders/1EDKTzQu5ztmfmccmSa4AzcTdQRjWJvhE?usp=share_link" 
-                            @formValue="(val) => form.link = val"
-                        />
-                        <ManagementInputField 
-                            :form="form"
-                            id="path"
-                            label="File Path"
-                            placeholder="#" 
-                            @formValue="(val) => form.path = val"
+                            :id="input.id"
+                            :label="input.label"
+                            :placeholder="input.placeholder"
+                            :options="input.options ?? null"
+                            @formValue="(val) => form[input.id] = val"
                         />
                     </div>
 
@@ -193,6 +96,7 @@
     import ManagementInputField from '@/Shared/ManagementInputField.vue';
 
     const props = defineProps({
+        imgSrc: String,
         createMode: Boolean,
         editMode: Boolean,
         closeCreateEditModal: Function,
@@ -202,6 +106,7 @@
         closeModal: Function,
         form: Object,
         submit: Function,
+        modalInput: Array,
     });
 
     const fileInput = ref(null);

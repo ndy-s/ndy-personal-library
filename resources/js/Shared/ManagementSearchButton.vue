@@ -1,6 +1,6 @@
 <template>
     <div class="flex items-center my-4 gap-4">
-        <h2 class="w-full text-white text-3xl font-bold border-l-4 border-green-400 pl-4">Art Library Management</h2>
+        <h2 class="w-full text-white text-3xl font-bold border-l-4 border-green-400 pl-4">{{ title }}</h2>
 
         <button class="border border-green-400 flex items-center p-2.5 text-md font-semibold text-white text-center bg-gray-800 hover:bg-gray-900" title="Upload Data" @click="uploadDataModal()">
             <svg fill="currentColor" height="20" width="25" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
@@ -55,6 +55,7 @@
     import { router } from "@inertiajs/vue3";
     
     const props = defineProps({
+        title: String,
         params: Object,
         ArtLibrary: Object,
         uploadDataModal: Function,

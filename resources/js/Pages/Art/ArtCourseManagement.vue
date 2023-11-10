@@ -7,6 +7,7 @@
         <div>
             <div class="p-5 mt-8 mx-10 rounded-md">
                 <ManagementSearchButton 
+                    title="Art Course Management"
                     :params="params"
                     :ArtLibrary="ArtLibrary"
                     :openCreateModal="openCreateModal"
@@ -14,17 +15,20 @@
                 />
 
                 <ManagementTable
+                    imgSrc="course"
                     :ArtLibrary="ArtLibrary"
                     :filters="filters"
                     :params="params"
                     :subDataFunc="subDataFunc"
                     :editFunc="editFunc"
                     :deleteFunc="deleteFunc"
+                    :tableHead="tableHead"
                 />
             </div>
         </div>
 
         <ManagementCreateUpdateModal
+            imgSrc="course"
             :createMode="createMode"
             :editMode="editMode"
             :closeCreateEditModal="closeCreateEditModal"
@@ -33,6 +37,7 @@
             :resetFunc="resetFunc"
             :form="form"
             :submit="submit"
+            :modalInput="modalInput"
         />
 
         <ManagementModalDelete 
@@ -62,7 +67,6 @@
 <script setup>
     import { reactive, ref, watch } from "vue";
     import { router, useForm } from "@inertiajs/vue3";
-    import { debounce } from "lodash/function";
 
     import Layout from "@/Shared/Layout.vue";
     import Nav from "@/Shared/Nav.vue";
@@ -80,6 +84,121 @@
         SubArtLibrary: Object,
         filters: Object,
     });
+    
+    const tableHead = [
+        {
+            title: 'Title',
+            tableId: 'title_en'
+        },
+        {
+            title: 'Publisher',
+            tableId: 'publisher'
+        },
+        {
+            title: 'Author',
+            tableId: 'author',
+        },        
+        {
+            title: 'Year',
+            tableId: 'year',
+        },        
+        {
+            title: 'Language',
+            tableId: 'lang',
+        },
+        {
+            title: 'Status',
+            tableId: 'status',
+        },
+        {
+            title: 'Video',
+            tableId: 'video',
+        },
+        {
+            title: 'Source',
+            tableId: 'soruce',
+        },
+        {
+            title: 'Description',
+            tableId: 'desc',
+        },
+        {
+            title: 'Link',
+            tableId: 'link',
+        },
+        {
+            title: 'File Path',
+            tableId: 'path',
+        },
+        {
+            title: 'Image Path',
+            tableId: 'image_path'
+        }
+    ];
+
+    const modalInput = [
+        {
+            id: 'title_en',
+            label: 'Title (English) *',
+            placeholder: 'Shin Evangelion Movie Version Animation Genga Illustration Vol. 1',
+        },
+        {
+            id: 'original',
+            label: 'Original',
+            placeholder: '段階別に学ぶ作曲の基本から制作まで',
+        },
+        {
+            id: 'publisher',
+            label: 'Publisher',
+            placeholder: 'Coloso',
+        },
+        {
+            id: 'author',
+            label: 'Author / Character Designer',
+            placeholder: 'Music Producer, Luna',
+        },
+        {
+            id: 'year',
+            label: 'Released Year',
+            placeholder: '2023',
+        },
+        {
+            id: 'lang',
+            label: 'Language',
+            placeholder: 'Japanese',
+        },
+        {
+            id: 'video',
+            label: 'Total Video',
+            placeholder: '32',
+        },
+        {
+            id: 'status',
+            label: 'Status *',
+            placeholder: 'Choose a status',
+            options: ['Completed', 'Not Completed'],
+        },
+        {
+            id: 'source',
+            label: 'Source',
+            placeholder: 'https://coloso.jp/products/musicproducer-luna-jp',
+        },
+        {
+            id: 'desc',
+            label: 'Description',
+            placeholder: '1080p',
+        },
+        {
+            id: 'link',
+            label: 'Google Drive Link',
+            placeholder: 'https://drive.google.com/drive/folders/1EDKTzQu5ztmfmccmSa4AzcTdQRjWJvhE?usp=share_link',
+        },
+        {
+            id: 'path',
+            label: 'File Path',
+            placeholder: '#',
+        },
+    ]
 
     const params = reactive({
         search: props.filters.search,
@@ -91,18 +210,15 @@
     let form = useForm({
         id: '',
         title_en: '',
-        title_jp: '',
         original: '',
-        series: '',
+        publisher: '',
         author: '',
-        studio: '',
         year: '',
         lang: '',
-        page: '',
+        video: '',
         status: '',
         source: '',
         desc: '',
-        type: '',
         link: '',
         path: '',
         image_path: '',
@@ -112,7 +228,7 @@
     const submit = () => {
         if (!buttonClicked.value) {
             if (editMode.value === false && deleteMode.value === false) {
-                form.post('art-library-management-create', {
+                form.post('art-course-management-create', {
                     preserveScroll: true,
                     onSuccess: () => {
                         form.reset();
@@ -126,7 +242,7 @@
                     }
                 });
             } else if (editMode.value === true) {
-                form.post('art-library-management-update', {
+                form.post('art-course-management-update', {
                     preserveScroll: true,
                     onSuccess: () => {
                         form.reset();
@@ -141,7 +257,7 @@
                 });
             } else {
                 buttonClicked.value = true;
-                form.delete('art-library-management-destroy', {
+                form.delete('art-course-management-destroy', {
                     preserveScroll: true,
                     onSuccess: () => {
                         buttonClicked.value = false;
@@ -177,18 +293,15 @@
 
         form.id = ArtLib.id;
         form.title_en = ArtLib.title_en;
-        form.title_jp = ArtLib.title_jp;
         form.original = ArtLib.original;
-        form.series = ArtLib.series;
+        form.publisher = ArtLib.publisher;
         form.author = ArtLib.author;
-        form.studio = ArtLib.studio;
         form.year = ArtLib.year;
         form.lang = ArtLib.lang;
-        form.page = ArtLib.page
+        form.video = ArtLib.video
         form.status = ArtLib.status;
         form.source = ArtLib.source;
         form.desc = ArtLib.desc;
-        form.type = ArtLib.type;
         form.link = ArtLib.link;
         form.path = ArtLib.path;
         form.image_path = ArtLib.image_path;
@@ -200,18 +313,15 @@
     const resetFunc = (ArtLib) => {
         form.id = ArtLib.id;
         form.title_en = ArtLib.title_en;
-        form.title_jp = ArtLib.title_jp;
         form.original = ArtLib.original;
-        form.series = ArtLib.series;
+        form.publisher = ArtLib.publisher;
         form.author = ArtLib.author;
-        form.studio = ArtLib.studio;
         form.year = ArtLib.year;
         form.lang = ArtLib.lang;
-        form.page = ArtLib.page
+        form.video = ArtLib.video
         form.status = ArtLib.status;
         form.source = ArtLib.source;
         form.desc = ArtLib.desc;
-        form.type = ArtLib.type;
         form.link = ArtLib.link;
         form.path = ArtLib.path;
         form.image_path = ArtLib.image_path;
@@ -236,9 +346,9 @@
     const formData = reactive([]);
     const subDataFunc = (id) => {
         props.SubArtLibrary.forEach((prop) => {
-            if (prop.art_library_id === id) {
+            if (prop.art_course_id === id) {
                 formData.push({
-                    'id': prop.art_library_id,
+                    'id': prop.art_course_id,
                     'title': prop.title,
                     'sub_desc': prop.sub_desc,
                     'link': prop.link,
@@ -255,7 +365,7 @@
             requestData[`data${index}`] = data;
         });
 
-        router.post('art-library-management-subcreate', requestData, {
+        router.post('art-course-management-subcreate', requestData, {
             preserveScroll: true,
             onSuccess: () => {
                 subData.value = false;

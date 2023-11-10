@@ -20,12 +20,12 @@
                     v-if="index === 9"
                 > {{index+1}} </h1>
                 
-                <DataRecentImg :artRecentLink="`/art-library/detail-${subRecent.id}`" :artRecentImage="`/img/library/${subRecent.image_path}`"/>
+                <DataRecentImg :artRecentLink="`/art-${imgSrc}/detail-${subRecent.id}`" :artRecentImage="`/img/${imgSrc}/${subRecent.image_path}`"/>
 
 
                 <div class="w-[100%]">
                     <Link
-                        :href="`/art-library/detail-${subRecent.id}`"
+                        :href="`/art-${imgSrc}/detail-${subRecent.id}`"
                         class="text-white font-semibold text-sm mb-1 hover:text-green-400 transition duration-400 ease-in-out line-clamp-2"
                         :title="subRecent.title_en"
                     >{{ subRecent.title_en }}</Link>
@@ -34,10 +34,10 @@
                         <button
                             @click="$emit('update:typeCat', $event.target.value)"
                             class="cursor-default text-gray-100 bg-green-400 bg-opacity-20 px-2 border border-green-400 rounded-sm text-xs font-bold mr-1 text-[12px]"
-                            :title="'Category: '+subRecent.type"
-                            :value="subRecent.type"
+                            :title="'Category: '+subRecent.type ?? subRecent.publisher"
+                            :value="subRecent.type ?? subRecent.publisher"
                         >
-                            {{ subRecent.type }}
+                            {{ subRecent.type ?? subRecent.publisher }}
                         </button>
                     </div>
                 </div>
@@ -51,6 +51,7 @@
     import DataRecentImg from "@/Shared/DataRecentImg.vue";
 
     const props = defineProps({
+        imgSrc: String,
         recent: Object,
     });
 

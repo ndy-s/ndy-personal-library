@@ -7,6 +7,7 @@
         <div>
             <div class="p-5 mt-8 mx-10 rounded-md">
                 <ManagementSearchButton 
+                    title="Art Library Management"
                     :params="params"
                     :ArtLibrary="ArtLibrary"
                     :openCreateModal="openCreateModal"
@@ -14,6 +15,7 @@
                 />
 
                 <ManagementTable
+                    imgSrc="library"
                     :ArtLibrary="ArtLibrary"
                     :filters="filters"
                     :params="params"
@@ -26,6 +28,7 @@
         </div>
 
         <ManagementCreateUpdateModal
+            imgSrc="library"
             :createMode="createMode"
             :editMode="editMode"
             :closeCreateEditModal="closeCreateEditModal"
@@ -34,6 +37,7 @@
             :resetFunc="resetFunc"
             :form="form"
             :submit="submit"
+            :modalInput="modalInput"
         />
 
         <ManagementModalDelete 
@@ -83,8 +87,16 @@
 
     const tableHead = [
         {
+            title: 'Title',
+            tableId: 'title_en'
+        },
+        {
             title: 'Original',
             tableId: 'original'
+        },
+        {
+            title: 'Type',
+            tableId: 'type'
         },
         {
             title: 'Series',
@@ -123,10 +135,6 @@
             tableId: 'desc',
         },
         {
-            title: 'Type',
-            tableId: 'type'
-        },
-        {
             title: 'Link',
             tableId: 'link',
         },
@@ -138,6 +146,86 @@
             title: 'Image Path',
             tableId: 'image_path'
         }
+    ];
+
+    const modalInput = [
+        {
+            id: 'title_en',
+            label: 'Title (English) *',
+            placeholder: 'Shin Evangelion Movie Version Animation Genga Illustration Vol. 1',
+        },
+        {
+            id: 'title_jp',
+            label: 'Title (Romaji)',
+            placeholder: 'Shin evu~angerion gekijō-ban animēshon genga-shū jōkan',
+        },
+        {
+            id: 'original',
+            label: 'Original',
+            placeholder: 'シン・エヴァンゲリオン劇場版アニメーション原画集 上巻',
+        },
+        {
+            id: 'series',
+            label: 'Series',
+            placeholder: 'Evangelion: 3.0+1.0 Thrice Upon a Time',
+        },
+        {
+            id: 'author',
+            label: 'Author / Character Designer',
+            placeholder: 'Anno, Moyoco',
+        },
+        {
+            id: 'studio',
+            label: 'Studio',
+            placeholder: 'Khara',
+        },        
+        {
+            id: 'year',
+            label: 'Released Year',
+            placeholder: '2022',
+        },        
+        {
+            id: 'lang',
+            label: 'Language',
+            placeholder: 'Japanese',
+        },        
+        {
+            id: 'page',
+            label: 'Page',
+            placeholder: '352',
+        },        
+        {
+            id: 'status',
+            label: 'Status *',
+            placeholder: 'Choose a status',
+            options: ['Completed', 'Not Completed'],
+        },
+        {
+            id: 'source',
+            label: 'Source',
+            placeholder: 'http://setteidreams.net/artbooks/',
+        },
+        {
+            id: 'desc',
+            label: 'Description',
+            placeholder: '300 DPI',
+        },
+        {
+            id: 'type',
+            label: 'Type *',
+            placeholder: 'Choose a type',
+            options: ['Booklet', 'Color Design', 'Illustration Book', 'Production Book', 'Production Sketches', 'Settei', 'Storyboard']
+        },
+        {
+            id: 'link',
+            label: 'Google Drive Link',
+            placeholder: 'https://drive.google.com/drive/folders/1EDKTzQu5ztmfmccmSa4AzcTdQRjWJvhE?usp=share_link',
+        },
+        {
+            id: 'path',
+            label: 'File Path',
+            placeholder: '#',
+        },
     ];
 
     const params = reactive({

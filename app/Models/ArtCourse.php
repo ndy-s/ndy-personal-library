@@ -12,4 +12,8 @@ class ArtCourse extends Model
     protected $guarded = [
         'id'
     ];
+
+    public function subArtCourses() {
+        return $this->hasMany(SubArtCourse::class);
+    }
 }

@@ -1,5 +1,5 @@
 <template>
-    <th v-if="tableId" scope="col" class="w-3/12 text-xs font-semibold tracking-wider text-white uppercase font-mono">
+    <th v-if="tableId" scope="col" class="text-xs font-semibold tracking-wider text-white uppercase font-mono">
         <span class="inline-flex px-6 w-full justify-between" @click="$emit('sort', tableId)">
             {{ columnTitle }}
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">

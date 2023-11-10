@@ -11,7 +11,7 @@ class ArtLibraryManagementController extends Controller {
     public function index() {
         request()->validate([
             'direction' => ['in:asc,desc'],
-            'field' => ['in:title_en,original,series,author,studio,year,lang,page,status,source,type']
+            'field' => ['in:title_en,original,series,author,studio,year,lang,page,status,source,type,desc']
         ]);
 
         $query = ArtLibrary::query();
@@ -29,7 +29,8 @@ class ArtLibraryManagementController extends Controller {
                 ->orWhere('page', 'LIKE', '%'.request('search').'%')
                 ->orWhere('status', 'LIKE', '%'.request('search').'%')
                 ->orWhere('source', 'LIKE', '%'.request('search').'%')
-                ->orWhere('type', 'LIKE', '%'.request('search').'%');
+                ->orWhere('type', 'LIKE', '%'.request('search').'%')
+                ->orWhere('desc', 'LIKE', '%'.request('search').'%');
         }
 
         if (request()->has(['field', 'direction'])) {

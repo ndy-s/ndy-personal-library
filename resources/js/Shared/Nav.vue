@@ -58,7 +58,7 @@
                                 <div class="bg-custom-prussian-blue rounded-lg shadow-lg py-2 w-60">
                                     <Link href="/art-library-management" class="block text-gray-200 font-semibold px-4 py-2 | hover:bg-gray-700 hover:text-white">Art Library Management</Link>
                                     <Link href="/art-course-management" class="block text-gray-200 font-semibold px-4 py-2 | hover:bg-gray-700 hover:text-white">Art Course Management</Link>
-                                    <Link href="#" class="block text-gray-200 font-semibold px-4 py-2 | hover:bg-gray-700 hover:text-white">#</Link>
+                                    <Link href="/art-tutorial-book-management" class="block text-gray-200 font-semibold px-4 py-2 | hover:bg-gray-700 hover:text-white">Tutorial Book Management</Link>
                                 </div>
                             </div>
                         </div>

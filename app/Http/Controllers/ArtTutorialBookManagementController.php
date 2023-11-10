@@ -83,7 +83,7 @@ class ArtTutorialBookManagementController extends Controller
                 $extension = strtolower($image->getClientOriginalExtension());
                 $image_name = md5(uniqid($image->getClientOriginalName(), true) . time()) . '.' . $extension;
                 $attributes['image_path'] = $image_name;
-                $image->move('./img/book', $image_name);
+                $image->move('./img/tutorial-book', $image_name);
                 return $attributes;
             } else if ($request->image_path) {
                 return array_merge($attributes, ['image_path' => $request->input('image_path')]);
@@ -115,7 +115,7 @@ class ArtTutorialBookManagementController extends Controller
     public function tutorialBookUpdate(Request $request) {
         $attributes = $this->dataProcess($request);
         $artTutorialBook = ArtTutorialBook::findOrFail($attributes['id']);
-        $image_path = public_path("img/book/{$artTutorialBook->image_path}");
+        $image_path = public_path("img/tutorial-book/{$artTutorialBook->image_path}");
 
         if (!str_contains($image_path ,'default.webp') && $attributes["image_path"] != $artTutorialBook->image_path) {
             unlink($image_path);
@@ -134,7 +134,7 @@ class ArtTutorialBookManagementController extends Controller
 
     public function tutorialBookDelete(Request $request) {
         $artTutorialBook = ArtTutorialBook::findOrFail($request->id);
-        $image_path = public_path("img/book/{$artTutorialBook->image_path}");
+        $image_path = public_path("img/tutorial-book/{$artTutorialBook->image_path}");
         if (!str_contains($image_path ,'default.webp')) {
             unlink($image_path);
         }

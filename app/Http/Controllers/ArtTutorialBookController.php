@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ArtTutorialBook;
+use App\Models\SubArtTutorialBook;
 use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
 
@@ -39,6 +40,20 @@ class ArtTutorialBookController extends Controller
             'ArtLibrary' => $artCourses,
             'types' => ArtTutorialBook::select('type')->distinct()->orderBy('type')->get(),
             'filters' => Request::only(['search']),
+            'recent' => ArtTutorialBook::orderBy('updated_at', 'desc')->limit(10)->get(),
+        ]);
+    }
+
+    public function detail(ArtTutorialBook $artTutorialBook) {
+        $availableArtTutorialBook = ArtTutorialBook::whereNotIn('id', [$artTutorialBook->id])->get();
+        $randomArtTutorialBook = $availableArtTutorialBook->count() >= 12
+            ? $availableArtTutorialBook->random(12)
+            : $availableArtTutorialBook;
+
+        return Inertia::render('Art/ArtTutorialBookDetail', [
+            'AllArtLibrary' => $randomArtTutorialBook,
+            'ArtLibrary' => $artTutorialBook,
+            'SubArtLibrary' => SubArtTutorialBook::where('art_tutorial_book_id', $artTutorialBook->id)->get(),
             'recent' => ArtTutorialBook::orderBy('updated_at', 'desc')->limit(10)->get(),
         ]);
     }

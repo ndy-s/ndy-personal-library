@@ -33,7 +33,7 @@
 
             <div class="flex">
                 <DataCards 
-                    imgSrc="book"
+                    imgSrc="tutorial-book"
                     :ArtLibrary="ArtLibrary" 
                     :filteredArtLibraryData="filteredArtLibraryData"
                     @update:typeCat="(val) => {
@@ -42,7 +42,7 @@
                     }"
                 />
                 <DataRecentList 
-                    imgSrc="book"
+                    imgSrc="tutorial-book"
                     :recent="recent" 
                     @update:typeCat="(val) => {
                         typeCat = val;

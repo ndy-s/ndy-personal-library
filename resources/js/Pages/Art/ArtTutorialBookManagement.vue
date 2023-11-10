@@ -15,7 +15,7 @@
                 />
 
                 <ManagementTable
-                    imgSrc="book"
+                    imgSrc="tutorial-book"
                     :ArtLibrary="ArtLibrary"
                     :filters="filters"
                     :params="params"
@@ -28,7 +28,7 @@
         </div>
 
         <ManagementCreateUpdateModal
-            imgSrc="book"
+            imgSrc="tutorial-book"
             :createMode="createMode"
             :editMode="editMode"
             :closeCreateEditModal="closeCreateEditModal"

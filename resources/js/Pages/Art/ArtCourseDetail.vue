@@ -6,6 +6,8 @@
 
         <div class="mt-16 relative w-[100%] h-auto">
             <img :src="`/img/course/${ArtLibrary.image_path}`" class="w-[100%] h-[60vh] object-cover blur-2xl z-[-10] clip-path opacity-50">
+            <DetailBackButton linkHref="/art-course"/>
+
             <div class="absolute top-0 mx-[27%] my-20 leading-7 w-[50%]">
                 <h1 class="text-white font-semibold text-[30px] mb-1 leading-8">{{ ArtLibrary.title_en }}</h1>
                 <span class="cursor-default text-gray-100 bg-green-400 bg-opacity-20 px-2 border border-green-400 rounded-sm text-xs font-bold h-fit justify-center text-center">{{ ArtLibrary.publisher }}</span>
@@ -16,7 +18,7 @@
                         <td> : {{ ArtLibrary.original }}</td>
                     </tr>
                     <tr>
-                        <td class="font-semibold">Author / Character Designer</td>
+                        <td class="font-semibold">Author</td>
                         <td> : {{ ArtLibrary.author }}</td>
                     </tr>
                     <tr>
@@ -62,7 +64,7 @@
 
         <div class="flex mt-12">
             <h1 class="text-white flex text-[30px] font-bold w-[70%] ml-12 border-l-4 border-green-400 pl-4">
-                Recommended Books
+                Recommended Courses
             </h1>
             <h1 class="w-[25%] mx-5">
                 <span class="text-white text-[30px] font-bold border-l-4 border-green-400 pl-4">Recently Updated</span>
@@ -72,6 +74,7 @@
         <div class="flex bottom-0">
             <DataCards 
                 imgSrc="course"
+                :cardDetailData="cardDetailData"
                 :ArtLibrary="ArtLibrary" 
                 :filteredArtLibraryData="AllArtLibrary"
             />
@@ -94,6 +97,7 @@
     import Nav from "@/Shared/Nav.vue";
     import DataCards from "@/Shared/DataCards.vue";
     import DataRecentList from "@/Shared/DataRecentList.vue";
+    import DetailBackButton from "../../Shared/DetailBackButton.vue";
 
     const props = defineProps({
         'AllArtLibrary': Object,
@@ -101,6 +105,33 @@
         'SubArtLibrary': Object,
         'recent': Object,
     });
+
+    const cardDetailData = [
+        {
+            id: 'original',
+            title: 'Original',
+        },
+        {
+            id: 'year',
+            title: 'Released Year',
+        },
+        {
+            id: 'lang',
+            title: 'Language',
+        },
+        {
+            id: 'video',
+            title: 'Video',
+        },
+        {
+            id: 'status',
+            title: 'Status',
+        },
+        {
+            id: 'desc',
+            title: 'Description'
+        }
+    ];
 
     const showModal = ref(false)
     const openModal = () => {

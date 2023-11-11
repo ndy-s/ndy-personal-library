@@ -34,6 +34,7 @@
             <div class="flex">
                 <DataCards 
                     imgSrc="library"
+                    :cardDetailData="cardDetailData"
                     :ArtLibrary="ArtLibrary" 
                     :filteredArtLibraryData="filteredArtLibraryData"
                     @update:typeCat="(val) => {
@@ -69,6 +70,45 @@
         filters: Object,
         recent: Object,
     });
+
+    const cardDetailData = [
+        {
+            id: 'title_jp',
+            title: 'Title (Romaji)'
+        },
+        {
+            id: 'original',
+            title: 'Original',
+        },
+        {
+            id: 'series',
+            title: 'Series',
+        },
+        {
+            id: 'studio',
+            title: 'Studio',
+        },
+        {
+            id: 'year',
+            title: 'Released Year',
+        },
+        {
+            id: 'lang',
+            title: 'Language',
+        },
+        {
+            id: 'page',
+            title: 'Page',
+        },
+        {
+            id: 'status',
+            title: 'Status',
+        },
+        {
+            id: 'desc',
+            title: 'Description'
+        }
+    ];
 
     let filteredData = [];
     const filteredArtLibraryData = computed(() => {

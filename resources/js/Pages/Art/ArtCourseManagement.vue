@@ -116,7 +116,7 @@
         },
         {
             title: 'Source',
-            tableId: 'soruce',
+            tableId: 'source',
         },
         {
             title: 'Description',
@@ -154,7 +154,7 @@
         },
         {
             id: 'author',
-            label: 'Author / Character Designer',
+            label: 'Author',
             placeholder: 'Music Producer, Luna',
         },
         {

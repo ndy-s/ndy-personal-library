@@ -149,7 +149,7 @@
         },
         {
             id: 'author',
-            label: 'Author / Character Designer',
+            label: 'Author',
             placeholder: 'Toshi',
         },
         {

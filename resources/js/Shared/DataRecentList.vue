@@ -34,7 +34,7 @@
                         <button
                             @click="$emit('update:typeCat', $event.target.value)"
                             class="cursor-default text-gray-100 bg-green-400 bg-opacity-20 px-2 border border-green-400 rounded-sm text-xs font-bold mr-1 text-[12px]"
-                            :title="'Category: '+subRecent.type ?? subRecent.publisher"
+                            :title="'Category: '+ (subRecent.type ?? subRecent.publisher)"
                             :value="subRecent.type ?? subRecent.publisher"
                         >
                             {{ subRecent.type ?? subRecent.publisher }}

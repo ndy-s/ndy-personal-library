@@ -14,7 +14,7 @@
                         @mouseenter="isInsideCard[index]=true; hiddenDivs[index]=true;showHiddenDiv(index)"
                         @mouseleave="isInsideCard[index]=false; isInsideHiddenDiv[index]=false; hideHiddenDiv(index)"
                         class="absolute font-bold text-xs m-2 text-white bg-custom-black-pearl bg-opacity-70 border border-green-400 start-0 rounded-sm p-1 bottom-28 z-10"
-                        :title="'Category: '+ArtLib.type ?? ArtLib.publisher"
+                        :title="'Category: '+ (ArtLib.type ?? ArtLib.publisher)"
                         :value="ArtLib.type ?? ArtLib.publisher"
                     >
                         {{ ArtLib.type ?? ArtLib.publisher }}
@@ -57,15 +57,8 @@
                                 </span>
                                 <span class="cursor-default text-gray-100 bg-green-400 bg-opacity-20 px-2 border border-green-400 rounded-sm text-xs font-bold h-fit justify-center text-center">{{ ArtLib.type ?? ArtLib.publisher }}</span>
                             </div>
-                            <DataCardDivText textKey="Title (Romaji)" :textValue="ArtLib.title_jp"/>
-                            <DataCardDivText textKey="Original" :textValue="ArtLib.original"/>
-                            <DataCardDivText textKey="Series" :textValue="ArtLib.series"/>
-                            <DataCardDivText textKey="Studio" :textValue="ArtLib.studio"/>
-                            <DataCardDivText textKey="Year" :textValue="ArtLib.year"/>
-                            <DataCardDivText textKey="Language" :textValue="ArtLib.lang"/>
-                            <DataCardDivText textKey="Page" :textValue="ArtLib.page"/>
-                            <DataCardDivText textKey="Status" :textValue="ArtLib.status"/>
-                            <DataCardDivText textKey="Description" :textValue="ArtLib.desc"/>
+                            <DataCardDivText v-for="(detail, index) in cardDetailData" :key="index" :textKey="detail.title" :textValue="ArtLib[detail.id]"/>
+    
                             <div class="flex justify-evenly mt-4">
                                 <a :href="ArtLib.link" target="_blank" class="bg-green-400 text-custom-black-pearl font-bold py-2 px-6 rounded-md inline-flex items-center">
                                     <svg class="mr-2" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -95,6 +88,7 @@
 
     const props = defineProps({
         imgSrc: String,
+        cardDetailData: Array,
         ArtLibrary: Object,
         filteredArtLibraryData: Object,
     });

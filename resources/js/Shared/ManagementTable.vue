@@ -8,7 +8,7 @@
                         v-for="(head, index) in tableHead" 
                         :key="index"
                         :columnTitle="head.title" 
-                        :tableId="head.tableId == 'title_en' || head.tableId == 'original' || head.tableId =='type' ? head.tableId : ''" 
+                        :tableId="head.tableId == 'title_en' || head.tableId == 'original' || head.tableId == 'type' || head.tableId == 'publisher'? head.tableId : ''" 
                         :params="params"
                         @sort="(val) => sort(val)"
                     />

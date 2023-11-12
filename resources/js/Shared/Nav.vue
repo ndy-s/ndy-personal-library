@@ -14,6 +14,7 @@
                             @change="$emit('update:typeCat', $event.target.value)"
                             class="flex-shrink-0 inline-flex items-center py-2.5 px-4 text-sm font-semibold text-white text-center border-r border-green-400 bg-gray-800 hover:bg-gray-900"
                             title="Category Option"
+                            
                         >
                             <option
                                 value=""

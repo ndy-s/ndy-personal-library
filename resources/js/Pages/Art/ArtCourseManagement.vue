@@ -370,25 +370,29 @@
     };
 
     const submitSub = () => {
-        let requestData = {};
-        formData.forEach((data, index) => {
-            if (index == 0) requestData['masterId'] = data;
-            requestData[`data${index}`] = data;
-        });
+        if (!buttonClicked.value) {
+            buttonClicked.value = true;
+            let requestData = {};
+            formData.forEach((data, index) => {
+                if (index == 0) requestData['masterId'] = data;
+                requestData[`data${index}`] = data;
+            });
 
-        router.post('art-course-management-subcreate', requestData, {
-            preserveScroll: true,
-            onSuccess: () => {
-                subData.value = false;
-                formData.splice(0);
+            router.post('art-course-management-subcreate', requestData, {
+                preserveScroll: true,
+                onSuccess: () => {
+                    buttonClicked.value = false;
+                    subData.value = false;
+                    formData.splice(0);
 
-                messageNotification.value = 'Added Sucessfully'
-                successNotification.value = true;
-                setTimeout(() => {
-                    successNotification.value = false;
-                }, 3000);
-            }
-        });
+                    messageNotification.value = 'Added Sucessfully'
+                    successNotification.value = true;
+                    setTimeout(() => {
+                        successNotification.value = false;
+                    }, 3000);
+                }
+            });
+        }
     };
 
     // Upload Data Modal

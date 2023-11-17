@@ -89,7 +89,7 @@
                     <div class="flex justify-center">
                         <button 
                             type="button" 
-                            @click="() => formData.push({'id': formData[0].id,'title': '','sub_desc': '','link': ''})"
+                            @click="() => formData.push({'id': formData[0],'title': '','sub_desc': '','link': ''})"
                             title="Add Fields"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="lightgreen" class="bi bi-plus-circle my-5" viewBox="0 0 16 16">
@@ -101,7 +101,7 @@
                         <button 
                             type="button" 
                             class="text-white bg-red-600 rounded-md text-sm font-semibold w-[15%] px-4 py-2.5 text-center shadow-md transition-colors duration-200 ease-in-out | hover:bg-red-700 focus:ring-2 focus:outline-none focus:ring-red-300" 
-                            @click="() => {let idTemp = formData[0].id; formData.splice(0); subDataFunc(idTemp)}"
+                            @click="() => {let idTemp = formData[0]; formData.splice(0); subDataFunc(idTemp)}"
                         >
                             Reset
                         </button>
@@ -127,5 +127,4 @@
         subDataFunc: Function,
         submitSub: Function,
     });
-
 </script>

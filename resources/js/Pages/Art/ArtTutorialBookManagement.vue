@@ -17,6 +17,12 @@
                 <ManagementTable
                     imgSrc="tutorial-book"
                     :ArtLibrary="ArtLibrary"
+                    :SubArtLibrary="SubArtLibrary.map(sub => {
+                        return {
+                            ...sub,
+                            master_id: sub.art_tutorial_book_id
+                        };
+                    })"
                     :filters="filters"
                     :params="params"
                     :subDataFunc="subDataFunc"

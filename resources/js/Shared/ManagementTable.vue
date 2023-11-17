@@ -16,20 +16,21 @@
             </thead>
 
             <tbody class="divide-y divide-green-800">
-                <tr v-if="ArtLibrary.data.length !== 0" v-for="(ArtLib) in ArtLibrary.data" :key="ArtLib.id">
+                <tr v-if="ArtLibrary.data.length !== 0" v-for="(ArtLib) in ArtLibrary.data" :key="ArtLib.id" class="hover:bg-gray-900" :class="{ 'bg-gray-900': state.clickedRow === ArtLib.id }">
                     <td class="py-2 px-6 text-sm text-gray-200 whitespace-nowrap">
                         <button 
-                            @click="subDataFunc(ArtLib.id)" 
+                            @click="subDataFunc(ArtLib.id); state.clickedRow = ArtLib.id;" 
                             title="Sub Data Toolbox" 
-                            class="rounded-lg text-sm p-1.5 ml-auto inline-flex items-center hover:bg-gray-600"
+                            class="relative rounded-lg text-sm p-1.5 ml-auto inline-flex items-center hover:bg-gray-600"
                         >
+                            <span v-if="SubArtLibrary.filter((sub) => sub.master_id == ArtLib.id) != 0" class="absolute w-4 h-4 font-bold top-[-4px] left-[-4px] text-[10px] rounded-full bg-white text-custom-black-pearl flex items-center justify-center">{{ SubArtLibrary.filter((sub) => sub.master_id == ArtLib.id).length }}</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="lightgreen" class="bi bi-box-seam" viewBox="0 0 16 16">
                                 <path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2l-2.218-.887zm3.564 1.426L5.596 5 8 5.961 14.154 3.5l-2.404-.961zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z"/>
                             </svg>
                         </button>
 
                         <button 
-                            @click="editFunc(ArtLib)" 
+                            @click="editFunc(ArtLib); state.clickedRow = ArtLib.id;" 
                             title="Edit" 
                             class="rounded-lg text-sm p-1.5 ml-auto inline-flex items-center hover:bg-gray-600"
                         >
@@ -38,7 +39,7 @@
                             </svg>
                         </button>
                         <button 
-                            @click="deleteFunc(ArtLib)" 
+                            @click="deleteFunc(ArtLib); state.clickedRow = ArtLib.id;" 
                             title="Delete" 
                             class="rounded-lg text-sm p-1.5 ml-auto inline-flex items-center hover:bg-gray-600"
                         >
@@ -96,13 +97,14 @@
 </template>
 
 <script setup>
-    import { ref } from "vue";
+    import { ref, reactive } from "vue";
     import ManagementTableHead from '@/Shared/ManagementTableHead.vue';
     import ManagementTableBody from '@/Shared/ManagementTableBody.vue';
 
     const props = defineProps({
         imgSrc: String,
         ArtLibrary: Object,
+        SubArtLibrary: Object,
         filters: Object,
         params: Object,
         subDataFunc: Function,
@@ -126,6 +128,10 @@
     const closeModal = () => {
       showModal.value = false
     };
+
+    const state = reactive({
+        clickedRow: null,
+    });
 </script>
 
 <style scoped>

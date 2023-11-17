@@ -19,38 +19,62 @@
 
                 <form @submit.prevent="submitSub" enctype="multipart/form-data">
                     <div class="max-h-[70vh] overflow-y-auto pr-4">
-                        <div v-for="(data, index) in formData" :key="index" class="mt-2">
-                            <label class="block mb-2 text-sm text-white" :class="{ 'font-bold': index == 0 }">{{ index == 0 ? 'Master Data' : 'Fields Sub Data ' + index}}</label>
-
+                        <div class="mt-2">
+                            <label class="block mb-2 text-sm text-white font-bold">Master Data</label>
                             <div class="flex justify-evenly gap-4">
+                                <input 
+                                    type="text"
+                                    :value="masterData.title_en"
+                                    class="bg-gray-900 border text-white text-sm rounded-md focus:ring-green-100 focus:border-green-100 focus:outline-none block w-full p-2.5 opacity-70 border-white cursor-not-allowed"
+                                    placeholder="Title"
+                                    disabled
+                                >
+                                <input 
+                                    type="text"
+                                    :value="masterData.desc"
+                                    class="bg-gray-900 border text-white text-sm rounded-md focus:ring-green-100 focus:border-green-100 focus:outline-none block w-full p-2.5 opacity-70 border-white cursor-not-allowed"
+                                    placeholder="Sub Desc"
+                                    disabled
+                                >
+                                <input 
+                                    type="text" 
+                                    :value="masterData.link"
+                                    class="bg-gray-900 border text-white text-sm rounded-md focus:ring-green-100 focus:border-green-100 focus:outline-none block w-full p-2.5 opacity-70 border-white cursor-not-allowed"
+                                    placeholder="Link"
+                                    disabled
+                                >
+
+                                <div class="w-fit h-fit rounded-lg text-sm p-2 ml-auto my-auto bg-white cursor-not-allowed | hover:bg-gray-200 transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="16" height="16" viewBox="0 0 24 24">
+                                        <path d="M 12 1 C 8.6761905 1 6 3.6761905 6 7 L 6 8 C 4.9 8 4 8.9 4 10 L 4 20 C 4 21.1 4.9 22 6 22 L 18 22 C 19.1 22 20 21.1 20 20 L 20 10 C 20 8.9 19.1 8 18 8 L 18 7 C 18 3.6761905 15.32381 1 12 1 z M 12 3 C 14.27619 3 16 4.7238095 16 7 L 16 8 L 8 8 L 8 7 C 8 4.7238095 9.7238095 3 12 3 z M 12 13 C 13.1 13 14 13.9 14 15 C 14 16.1 13.1 17 12 17 C 10.9 17 10 16.1 10 15 C 10 13.9 10.9 13 12 13 z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-for="(data, index) in formData" :key="index" class="mt-2">
+                            <label v-if="index != 0" class="block mb-2 text-sm text-white">Fields Sub Data {{ ++index }}</label>
+                            <div v-if="index != 0" class="flex justify-evenly gap-4">
                                 <input 
                                     type="text"
                                     v-model="data.title" 
                                     class="bg-gray-900 border border-green-400 text-white text-sm rounded-md focus:ring-green-100 focus:border-green-100 focus:outline-none block w-full p-2.5"
-                                    :class="{'opacity-70 border-white cursor-not-allowed': index == 0}" 
                                     placeholder="Title"
-                                    :disabled="index == 0"
                                 >
                                 <input 
                                     type="text"
                                     v-model="data.sub_desc" 
                                     class="bg-gray-900 border border-green-400 text-white text-sm rounded-md focus:ring-green-100 focus:border-green-100 focus:outline-none block w-full p-2.5" 
-                                    :class="{'opacity-70 border-white cursor-not-allowed': index == 0}" 
                                     placeholder="Sub Desc"
-                                    :disabled="index == 0"
                                 >
                                 <input 
                                     type="text" 
                                     v-model="data.link" 
                                     class="bg-gray-900 border border-green-400 text-white text-sm rounded-md focus:ring-green-100 focus:border-green-100 focus:outline-none block w-full p-2.5"
-                                    :class="{'opacity-70 border-white cursor-not-allowed': index == 0}" 
                                     placeholder="Link"
-                                    :disabled="index == 0"
                                 >
 
                                 <button 
                                     type="button" 
-                                    v-if="formData.length > 1 && index != 0" 
                                     @click="() => formData.splice(index-1, 1)" 
                                     title="Delete Fields" 
                                     class="w-fit h-fit rounded-lg text-sm p-2 ml-auto my-auto bg-red-500 | hover:bg-red-600 transition-colors"
@@ -59,11 +83,6 @@
                                         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/> <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
                                     </svg>
                                 </button>
-                                <div v-else class="w-fit h-fit rounded-lg text-sm p-2 ml-auto my-auto bg-white cursor-not-allowed | hover:bg-gray-200 transition-colors">
-                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="16" height="16" viewBox="0 0 24 24">
-                                        <path d="M 12 1 C 8.6761905 1 6 3.6761905 6 7 L 6 8 C 4.9 8 4 8.9 4 10 L 4 20 C 4 21.1 4.9 22 6 22 L 18 22 C 19.1 22 20 21.1 20 20 L 20 10 C 20 8.9 19.1 8 18 8 L 18 7 C 18 3.6761905 15.32381 1 12 1 z M 12 3 C 14.27619 3 16 4.7238095 16 7 L 16 8 L 8 8 L 8 7 C 8 4.7238095 9.7238095 3 12 3 z M 12 13 C 13.1 13 14 13.9 14 15 C 14 16.1 13.1 17 12 17 C 10.9 17 10 16.1 10 15 C 10 13.9 10.9 13 12 13 z"></path>
-                                    </svg>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -102,9 +121,11 @@
 
 <script setup>
     const props = defineProps({
+        masterData: Object,
         subData: Boolean,
         formData: Array,
         subDataFunc: Function,
         submitSub: Function,
     });
+
 </script>

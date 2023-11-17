@@ -47,7 +47,8 @@
             :submit="submit"
         />
 
-        <ManagementSubData 
+        <ManagementSubData
+            :masterData="masterData"
             :subData="subData"
             :formData="formData"
             :subDataFunc="subDataFunc"
@@ -381,7 +382,9 @@
     // Sub Data Modal Code
     const subData = ref(false);
     const formData = reactive([]);
+    let masterData = null;
     const subDataFunc = (id) => {
+        formData.push(id);
         props.SubArtLibrary.forEach((prop) => {
             if (prop.art_library_id === id) {
                 formData.push({
@@ -393,12 +396,14 @@
             }
         });
 
+        [masterData] = props.ArtLibrary.data.filter((lib) => lib.id == id);
         subData.value = true;
     };
 
     const submitSub = () => {
         let requestData = {};
         formData.forEach((data, index) => {
+            if (index == 0) requestData['masterId'] = data;
             requestData[`data${index}`] = data;
         });
 

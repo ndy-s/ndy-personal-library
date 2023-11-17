@@ -102,15 +102,8 @@ class ArtLibraryManagementController extends Controller {
     public function libraryCreate(Request $request) {
         try {
             $attributes = $this->dataProcess($request);
+            ArtLibrary::create($attributes);
 
-            $artLibrary = ArtLibrary::create($attributes);
-            $subArtLibrary = new SubArtLibrary([
-                'title' => $request->input('title_en') ?? 'N/A',
-                'sub_desc' => $request->input('desc') ?? 'N/A',
-                'link' => $request->input('link') ?? '#'
-            ]);
-
-            $artLibrary->subArtLibraries()->save($subArtLibrary);
             return back()->withInput();
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -126,14 +119,7 @@ class ArtLibraryManagementController extends Controller {
             unlink($image_path);
         }
         $artLibrary->update($attributes);
-
-        $subArtLibrary = $artLibrary->subArtLibraries()->first();
-        $subArtLibrary->update([
-            'title' => $request->input('title_en') ?? 'N/A',
-            'sub_desc' => $request->input('desc') ?? 'N/A',
-            'link' => $request->input('link') ?? '#'
-        ]);
-
+        
         return back()->withInput();
     }
 
@@ -149,17 +135,19 @@ class ArtLibraryManagementController extends Controller {
     }
 
     public function librarySubCreate(Request $request) {
-        $artLibrary = ArtLibrary::findOrFail($request->data0['id']);
-        SubArtLibrary::whereIn('id', SubArtLibrary::where('art_library_id', $request->data0['id'])->pluck('id')->toArray())->delete();
+        $artLibrary = ArtLibrary::findOrFail($request->masterId);
+        SubArtLibrary::whereIn('id', SubArtLibrary::where('art_library_id', $request->masterId)->pluck('id')->toArray())->delete();
 
         foreach ($request->all() as $key) {
-            $subArtLibrary = new SubArtLibrary([
-                'title' => $key['title'] ?? 'N/A',
-                'sub_desc' => $key['sub_desc'] ?? 'N/A',
-                'link' => $key['link'] ?? '#',
-            ]);
+            if (is_array($key)) {
+                $subArtLibrary = new SubArtLibrary([
+                    'title' => $key['title'] ?? 'N/A',
+                    'sub_desc' => $key['sub_desc'] ?? 'N/A',
+                    'link' => $key['link'] ?? '#',
+                ]);
 
-            $artLibrary->subArtLibraries()->save($subArtLibrary);
+                $artLibrary->subArtLibraries()->save($subArtLibrary);
+            }
         }
     }
 }

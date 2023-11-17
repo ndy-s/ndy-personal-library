@@ -97,15 +97,8 @@ class ArtTutorialBookManagementController extends Controller
     public function tutorialBookCreate(Request $request) {
         try {
             $attributes = $this->dataProcess($request);
+            ArtTutorialBook::create($attributes);
 
-            $artTutorialBook = ArtTutorialBook::create($attributes);
-            $subArtTutorialBook = new SubArtTutorialBook([
-                'title' => $request->input('title_en') ?? 'N/A',
-                'sub_desc' => $request->input('desc') ?? 'N/A',
-                'link' => $request->input('link') ?? '#'
-            ]);
-
-            $artTutorialBook->subArtTutorialBooks()->save($subArtTutorialBook);
             return back()->withInput();
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -122,13 +115,6 @@ class ArtTutorialBookManagementController extends Controller
         }
         $artTutorialBook->update($attributes);
 
-        $subArtTutorialBook = $artTutorialBook->subArtTutorialBooks()->first();
-        $subArtTutorialBook->update([
-            'title' => $request->input('title_en') ?? 'N/A',
-            'sub_desc' => $request->input('desc') ?? 'N/A',
-            'link' => $request->input('link') ?? '#'
-        ]);
-
         return back()->withInput();
     }
 
@@ -144,17 +130,19 @@ class ArtTutorialBookManagementController extends Controller
     }
 
     public function tutorialBookSubCreate(Request $request) {
-        $artTutorialBook = ArtTutorialBook::findOrFail($request->data0['id']);
-        SubArtTutorialBook::whereIn('id', SubArtTutorialBook::where('art_tutorial_book_id', $request->data0['id'])->pluck('id')->toArray())->delete();
+        $artTutorialBook = ArtTutorialBook::findOrFail($request->masterId);
+        SubArtTutorialBook::whereIn('id', SubArtTutorialBook::where('art_tutorial_book_id', $request->masterId)->pluck('id')->toArray())->delete();
 
         foreach ($request->all() as $key) {
-            $subArtLibrary = new SubArtTutorialBook([
-                'title' => $key['title'] ?? 'N/A',
-                'sub_desc' => $key['sub_desc'] ?? 'N/A',
-                'link' => $key['link'] ?? '#',
-            ]);
-
-            $artTutorialBook->subArtTutorialBooks()->save($subArtLibrary);
+            if (is_array($key)) {
+                $subArtLibrary = new SubArtTutorialBook([
+                    'title' => $key['title'] ?? 'N/A',
+                    'sub_desc' => $key['sub_desc'] ?? 'N/A',
+                    'link' => $key['link'] ?? '#',
+                ]);
+            
+                $artTutorialBook->subArtTutorialBooks()->save($subArtLibrary);
+            }
         }
     }
 }

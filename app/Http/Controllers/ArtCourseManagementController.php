@@ -95,15 +95,8 @@ class ArtCourseManagementController extends Controller
     public function courseCreate(Request $request) {
         try {
             $attributes = $this->dataProcess($request);
+            ArtCourse::create($attributes);
 
-            $artCourse = ArtCourse::create($attributes);
-            $subArtCourse = new SubArtCourse([
-                'title' => $request->input('title_en') ?? 'N/A',
-                'sub_desc' => $request->input('desc') ?? 'N/A',
-                'link' => $request->input('link') ?? '#'
-            ]);
-
-            $artCourse->subArtCourses()->save($subArtCourse);
             return back()->withInput();
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -120,13 +113,6 @@ class ArtCourseManagementController extends Controller
         }
         $artCourse->update($attributes);
 
-        $subArtCourse = $artCourse->subArtCourses()->first();
-        $subArtCourse->update([
-            'title' => $request->input('title_en') ?? 'N/A',
-            'sub_desc' => $request->input('desc') ?? 'N/A',
-            'link' => $request->input('link') ?? '#'
-        ]);
-
         return back()->withInput();
     }
 
@@ -142,17 +128,19 @@ class ArtCourseManagementController extends Controller
     }
 
     public function courseSubCreate(Request $request) {
-        $artCourse = ArtCourse::findOrFail($request->data0['id']);
-        SubArtCourse::whereIn('id', SubArtCourse::where('art_course_id', $request->data0['id'])->pluck('id')->toArray())->delete();
+        $artCourse = ArtCourse::findOrFail($request->masterId);
+        SubArtCourse::whereIn('id', SubArtCourse::where('art_course_id', $request->masterId)->pluck('id')->toArray())->delete();
 
         foreach ($request->all() as $key) {
-            $subArtCourse = new SubArtCourse([
-                'title' => $key['title'] ?? 'N/A',
-                'sub_desc' => $key['sub_desc'] ?? 'N/A',
-                'link' => $key['link'] ?? '#',
-            ]);
+            if (is_array($key)) {
+                $subArtCourse = new SubArtCourse([
+                    'title' => $key['title'] ?? 'N/A',
+                    'sub_desc' => $key['sub_desc'] ?? 'N/A',
+                    'link' => $key['link'] ?? '#',
+                ]);
 
-            $artCourse->subArtCourses()->save($subArtCourse);
+                $artCourse->subArtCourses()->save($subArtCourse);
+            }
         }
     }
 }

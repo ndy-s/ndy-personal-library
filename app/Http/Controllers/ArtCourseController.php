@@ -36,6 +36,7 @@ class ArtCourseController extends Controller
         $artCourses = $query->paginate(40);
 
         return Inertia::render('Art/ArtCourse', [
+            'courseTotal' => $query->count(),
             'ArtLibrary' => $artCourses,
             'types' => ArtCourse::select('publisher')->distinct()->orderBy('publisher')->get(),
             'filters' => Request::only(['search']),

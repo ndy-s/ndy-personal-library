@@ -20,7 +20,7 @@
                 class="flex"
             >
                 <h1 class="text-white flex text-[30px] font-bold w-[70%] ml-12 border-l-4 border-green-400 pl-4">
-                    Art Tutorial Book
+                    Art Tutorial Book (Total {{ tutorialBookTotal ?? 0 }})
                     <span
                         class="text-[30px] flex font-normal text-white"
                         v-if="!filteredArtLibraryData.length"
@@ -66,6 +66,7 @@
     import DataRecentList from "@/Shared/DataRecentList.vue";
 
     let props = defineProps({
+        tutorialBookTotal: Number,
         ArtLibrary: Object,
         types: Object,
         filters: Object,

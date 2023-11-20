@@ -39,6 +39,7 @@ class ArtLibraryController extends Controller
         $artLibraries = $query->paginate(40);
 
         return Inertia::render('Art/ArtLibrary', [
+            'libraryTotal' => $query->count(),
             'ArtLibrary' => $artLibraries,
             'types' => ArtLibrary::select('type')->distinct()->orderBy('type')->get(),
             'filters' => Request::only(['search']),

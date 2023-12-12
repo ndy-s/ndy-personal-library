@@ -6,7 +6,7 @@
 
         <div>
             <div class="p-5 mt-8 mx-10 rounded-md">
-                <ManagementSearchButton 
+                <ManagementSearchButton
                     title="Art Library Management"
                     :params="params"
                     :ArtLibrary="ArtLibrary"
@@ -46,10 +46,10 @@
             :modalInput="modalInput"
         />
 
-        <ManagementModalDelete 
+        <ManagementModalDelete
             :deleteMode="deleteMode"
             :deleteTitle_en="deleteTitle_en"
-            :closeDeleteModal="closeDeleteModal" 
+            :closeDeleteModal="closeDeleteModal"
             :submit="submit"
         />
 
@@ -62,7 +62,7 @@
             @closeSubData="() => { subData = false; formData.splice(0) }"
         />
 
-        <ManagementUploadData 
+        <ManagementUploadData
             :uploadData="uploadData"
             @closeUploadData="() => { uploadData = false }"
         />
@@ -108,19 +108,19 @@
         {
             title: 'Series',
             tableId: 'series',
-        },        
+        },
         {
             title: 'Author',
             tableId: 'author',
-        },        
+        },
         {
             title: 'Studio',
             tableId: 'studio',
-        },        
+        },
         {
             title: 'Year',
             tableId: 'year',
-        },        
+        },
         {
             title: 'Language',
             tableId: 'lang',
@@ -185,22 +185,22 @@
             id: 'studio',
             label: 'Studio',
             placeholder: 'Khara',
-        },        
+        },
         {
             id: 'year',
             label: 'Released Year',
             placeholder: '2022',
-        },        
+        },
         {
             id: 'lang',
             label: 'Language',
             placeholder: 'Japanese',
-        },        
+        },
         {
             id: 'page',
             label: 'Page',
             placeholder: '352',
-        },        
+        },
         {
             id: 'status',
             label: 'Status *',
@@ -221,7 +221,7 @@
             id: 'type',
             label: 'Type *',
             placeholder: 'Choose a type',
-            options: ['Booklet', 'Color Design', 'Illustration Book', 'Production Book', 'Production Sketches', 'Settei', 'Storyboard']
+            options: ['Animation Material', 'Booklet', 'Color Design', 'Illustration Book', 'Production Book', 'Production Sketches', 'Settei', 'Storyboard']
         },
         {
             id: 'link',
@@ -318,7 +318,7 @@
         createMode.value = false;
         editMode.value = false;
     };
-    
+
     // Create Modal Code
     const createMode = ref(false);
 

@@ -135,7 +135,7 @@
         },
         {
             title: 'Source',
-            tableId: 'soruce',
+            tableId: 'source',
         },
         {
             title: 'Description',

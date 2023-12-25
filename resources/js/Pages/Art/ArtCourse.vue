@@ -1,11 +1,11 @@
 <template>
     <Layout>
         <template #nav>
-            <Nav 
-                :ArtLibrary="ArtLibrary" 
-                :types="types" 
-                v-model:search="search" 
-                @update:search="val => search = val" 
+            <Nav
+                :ArtLibrary="ArtLibrary"
+                :types="types"
+                v-model:search="search"
+                @update:search="val => search = val"
                 v-model:typeCat="typeCat"
                 @update:typeCat="(val) => {
                     typeCat = val;
@@ -32,19 +32,19 @@
             </div>
 
             <div class="flex">
-                <DataCards 
+                <DataCards
                     imgSrc="course"
                     :cardDetailData="cardDetailData"
-                    :ArtLibrary="ArtLibrary" 
+                    :ArtLibrary="ArtLibrary"
                     :filteredArtLibraryData="filteredArtLibraryData"
                     @update:typeCat="(val) => {
                         typeCat = val;
                         onChange();
                     }"
                 />
-                <DataRecentList 
+                <DataRecentList
                     imgSrc="course"
-                    :recent="recent" 
+                    :recent="recent"
                     @update:typeCat="(val) => {
                         typeCat = val;
                         onChange();
@@ -154,7 +154,7 @@
     const handleScroll = throttle(() => {
         let pixelsFromBottom = document.documentElement.offsetHeight - document.documentElement.scrollTop - window.innerHeight;
 
-        if (pixelsFromBottom < 200 && !loading.value) {
+        if (pixelsFromBottom < 1000 && !loading.value) {
             loading.value = true;
 
             if (props.ArtLibrary && props.ArtLibrary.next_page_url) {

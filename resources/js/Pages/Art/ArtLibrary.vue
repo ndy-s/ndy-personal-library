@@ -1,11 +1,11 @@
 <template>
     <Layout>
         <template #nav>
-            <Nav 
-                :ArtLibrary="ArtLibrary" 
-                :types="types" 
-                v-model:search="search" 
-                @update:search="val => search = val" 
+            <Nav
+                :ArtLibrary="ArtLibrary"
+                :types="types"
+                v-model:search="search"
+                @update:search="val => search = val"
                 v-model:typeCat="typeCat"
                 @update:typeCat="(val) => {
                     typeCat = val;
@@ -32,19 +32,19 @@
             </div>
 
             <div class="flex">
-                <DataCards 
+                <DataCards
                     imgSrc="library"
                     :cardDetailData="cardDetailData"
-                    :ArtLibrary="ArtLibrary" 
+                    :ArtLibrary="ArtLibrary"
                     :filteredArtLibraryData="filteredArtLibraryData"
                     @update:typeCat="(val) => {
                         typeCat = val;
                         onChange();
                     }"
                 />
-                <DataRecentList 
+                <DataRecentList
                     imgSrc="library"
-                    :recent="recent" 
+                    :recent="recent"
                     @update:typeCat="(val) => {
                         typeCat = val;
                         onChange();
@@ -58,7 +58,7 @@
     import { onMounted, onUnmounted, ref, computed, watch } from "vue";
     import { router } from "@inertiajs/vue3";
     import { throttle } from "lodash/function";
-    
+
     import Layout from "@/Shared/Layout.vue";
     import Nav from "@/Shared/Nav.vue";
     import DataCards from "@/Shared/DataCards.vue";
@@ -165,7 +165,7 @@
     const handleScroll = throttle(() => {
         let pixelsFromBottom = document.documentElement.offsetHeight - document.documentElement.scrollTop - window.innerHeight;
 
-        if (pixelsFromBottom < 200 && !loading.value) {
+        if (pixelsFromBottom < 1000 && !loading.value) {
             loading.value = true;
 
             if (props.ArtLibrary && props.ArtLibrary.next_page_url) {

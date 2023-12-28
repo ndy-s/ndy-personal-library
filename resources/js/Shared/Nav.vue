@@ -14,13 +14,15 @@
                             @change="$emit('update:typeCat', $event.target.value)"
                             class="flex-shrink-0 inline-flex items-center py-2.5 px-4 text-sm font-semibold text-white text-center border-r border-green-400 bg-gray-800 hover:bg-gray-900"
                             title="Category Option"
-                            
+
                         >
                             <option
+                                class="text-left"
                                 value=""
                                 selected
                             >No Category</option>
                             <option
+                                class="text-left"
                                 v-for="(type, index) in types"
                                 :key="index"
                                 :value="Object.values(type).toString()"
@@ -48,7 +50,7 @@
 
                     <div class="flex">
                         <div class="relative">
-                            <button 
+                            <button
                                 class="rounded-full overflow-hidden border-2 border-green-400 w-10 h-10 flex justify-center items-center | hover:animate-spin hover:border-gray-200 focus:animate-spin focus:border-gray-200 ease-in-out"
                                 @click="dropdownOpen = true"
                             >

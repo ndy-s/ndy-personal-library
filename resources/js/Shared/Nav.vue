@@ -54,7 +54,7 @@
                                 class="rounded-full overflow-hidden border-2 border-green-400 w-10 h-10 flex justify-center items-center | hover:animate-spin hover:border-gray-200 focus:animate-spin focus:border-gray-200 ease-in-out"
                                 @click="dropdownOpen = true"
                             >
-                                <img src="https://yt3.ggpht.com/S1CwKMvi9D8aebYrU0F495z7gsKrPWKYB7SVQi0xLDC5FLS0aIlcNWVQz2a2qSa92pBzcqsMeAM=s88-c-k-c0x00ffffff-no-rj" alt="Logo">
+                                <img src="/icon.jpg" alt="Logo">
                             </button>
                             <div v-show="dropdownOpen" class="fixed inset-0 w-full h-screen z-20 bg-black opacity-25" @click="dropdownOpen = false"></div>
                             <div v-show="dropdownOpen" class="absolute z-30 mt-2 left-0" :class="{'hidden': !dropdownOpen, 'right-0 left-auto': ArtLibrary }">

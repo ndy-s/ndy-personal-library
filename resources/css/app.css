@@ -10,7 +10,7 @@
 
 /* Firefox scrollbar styles */
 * {
-    scrollbar-color: lightgreen darkseagreen;
+    scrollbar-color: lightgreen black;
     scrollbar-width: thin;
 }
 
@@ -27,7 +27,7 @@
 
 /* Set the scrollbar thumb on hover state */
 *::-webkit-scrollbar-thumb:hover {
-    background-color: darkseagreen;
+    background-color: black;
 }
 
 /* Set the scrollbar corner color */
@@ -51,20 +51,14 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
     height: 3px;
 }
 
-/* Set the track (the area where the thumb doesn't cover) color for both orientations */
-::-webkit-scrollbar-track {
-    background-color: black;
-}
-
 /* Set the scrollbar thumb color for both orientations */
 ::-webkit-scrollbar-thumb {
     background-color: lightgreen;
     border-radius: 3px;
 }
 
-/* Set the scrollbar thumb on hover state for both orientations */
 ::-webkit-scrollbar-thumb:hover {
-    background-color: darkseagreen;
+    background-color: lightgreen;
 }
 
 /* Set the scrollbar corner color for both orientations */

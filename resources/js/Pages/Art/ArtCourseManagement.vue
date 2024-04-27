@@ -6,7 +6,7 @@
 
         <div>
             <div class="p-5 mt-8 mx-10 rounded-md">
-                <ManagementSearchButton 
+                <ManagementSearchButton
                     title="Art Course Management"
                     :params="params"
                     :ArtLibrary="ArtLibrary"
@@ -46,14 +46,14 @@
             :modalInput="modalInput"
         />
 
-        <ManagementModalDelete 
+        <ManagementModalDelete
             :deleteMode="deleteMode"
             :deleteTitle_en="deleteTitle_en"
-            :closeDeleteModal="closeDeleteModal" 
+            :closeDeleteModal="closeDeleteModal"
             :submit="submit"
         />
 
-        <ManagementSubData 
+        <ManagementSubData
             :masterData="masterData"
             :subData="subData"
             :formData="formData"
@@ -62,7 +62,7 @@
             @closeSubData="() => { subData = false; formData.splice(0) }"
         />
 
-        <ManagementUploadData 
+        <ManagementUploadData
             :uploadData="uploadData"
             @closeUploadData="() => { uploadData = false }"
         />
@@ -91,7 +91,7 @@
         SubArtLibrary: Object,
         filters: Object,
     });
-    
+
     const tableHead = [
         {
             title: 'Title',
@@ -104,11 +104,11 @@
         {
             title: 'Author',
             tableId: 'author',
-        },        
+        },
         {
             title: 'Year',
             tableId: 'year',
-        },        
+        },
         {
             title: 'Language',
             tableId: 'lang',
@@ -147,7 +147,7 @@
         {
             id: 'title_en',
             label: 'Title (English) *',
-            placeholder: 'Shin Evangelion Movie Version Animation Genga Illustration Vol. 1',
+            placeholder: 'Learn Step by Step from the Basics of Composition to Production.',
         },
         {
             id: 'original',
@@ -287,7 +287,7 @@
         createMode.value = false;
         editMode.value = false;
     };
-    
+
     // Create Modal Code
     const createMode = ref(false);
 

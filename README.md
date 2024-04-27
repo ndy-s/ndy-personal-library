@@ -7,7 +7,8 @@ However, my digital storage resembles a cluttered attic. Folders upon folders, l
 ## Project Overview
 ### Demo
 Check out a glimpse of the website in action:
-~ DEMO [Tobe Added]
+
+![ndyapp-demo](https://github.com/ndy-s/ndy-app-personal-library/assets/94002483/6a56d04a-9821-4e3b-b7cf-e2295b36b35f)
 
 ### Stack
 The project is built using Laravel, Vue.js, and Inertia.js, complemented by Tailwind CSS. Additionally, I’ve incorporated other necessary stacks to ensure the project runs smoothly.

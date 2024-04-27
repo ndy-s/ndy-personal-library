@@ -2,7 +2,7 @@
 
 I usually looks for a collection of digital resources—tutorials, guides, and books—that feed my curiosity. While some of these resources are readily accessible, others are tucked behind paywalls. But, I've come across alternative sources that provide these materials for free (though I don’t recommend this approach, strictly for personal use, of course). To keep track of these valuable materials, I save them in my digital or cloud storage.
 
-However, my digital storage resembles a cluttered attic. Folders upon folders, like a tangled web, make finding anything akin to a treasure hunt. So, I decided to create a solution—a personal library management project—to organize my trove efficiently.
+However, my digital storage resembles a cluttered attic. Folders upon folders, like a tangled web, make finding anything akin to a treasure hunt. So, I decided to create a solution—a personal library management project—to organize my data efficiently.
 
 ## Project Overview
 ### Demo
@@ -39,7 +39,9 @@ To replicate this project:
     npm run dev
     ```
 
-**Note:** Initially, there won't be any data, so you'll need to add it manually through the management section.
+**Note:** 
+- Initially, there won't be any data, so you'll need to add it manually through the management section.
+- Keep in mind that this project is designed as a starting point. You may need to customize certain aspects to meet your specific needs and preferences.
 
 ## License
 MIT

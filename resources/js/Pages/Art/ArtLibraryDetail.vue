@@ -63,24 +63,80 @@
                     <p class="text-gray-100 text-lg font-semibold leading-6">{{ ArtLibrary.title_en }}</p>
                     <p class="text-gray-200 mb-2 text-xs font-semibold">Master Data • {{ ArtLibrary.desc }}</p>
                     <div class="flex justify-evenly">
-                        <a :href="ArtLibrary.link" target="_blank" class="bg-green-400 text-custom-black-pearl font-bold py-2 px-6 rounded-md inline-flex items-center hover:bg-opacity-80 transition-all">
-                            <svg class="mr-2" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 13C12.5523 13 13 12.5523 13 12V3C13 2.44771 12.5523 2 12 2H3C2.44771 2 2 2.44771 2 3V6.5C2 6.77614 2.22386 7 2.5 7C2.77614 7 3 6.77614 3 6.5V3H12V12H8.5C8.22386 12 8 12.2239 8 12.5C8 12.7761 8.22386 13 8.5 13H12ZM9 6.5C9 6.5001 9 6.50021 9 6.50031V6.50035V9.5C9 9.77614 8.77614 10 8.5 10C8.22386 10 8 9.77614 8 9.5V7.70711L2.85355 12.8536C2.65829 13.0488 2.34171 13.0488 2.14645 12.8536C1.95118 12.6583 1.95118 12.3417 2.14645 12.1464L7.29289 7H5.5C5.22386 7 5 6.77614 5 6.5C5 6.22386 5.22386 6 5.5 6H8.5C8.56779 6 8.63244 6.01349 8.69139 6.03794C8.74949 6.06198 8.80398 6.09744 8.85143 6.14433C8.94251 6.23434 8.9992 6.35909 8.99999 6.49708L8.99999 6.49738" fill="currentColor"/>
-                            </svg>
-                            <span class="text-xs">View</span>
-                        </a>
+                        <template v-if="ArtLibrary.link && ArtLibrary.link !== 'N/A'">
+                            <a :href="ArtLibrary.link" target="_blank" class="bg-yellow-400 text-custom-black-pearl font-bold py-2 px-6 rounded-md inline-flex items-center hover:bg-opacity-80 transition-all">
+                                <svg class="mr-2" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 13C12.5523 13 13 12.5523 13 12V3C13 2.44771 12.5523 2 12 2H3C2.44771 2 2 2.44771 2 3V6.5C2 6.77614 2.22386 7 2.5 7C2.77614 7 3 6.77614 3 6.5V3H12V12H8.5C8.22386 12 8 12.2239 8 12.5C8 12.7761 8.22386 13 8.5 13H12ZM9 6.5C9 6.5001 9 6.50021 9 6.50031V6.50035V9.5C9 9.77614 8.77614 10 8.5 10C8.22386 10 8 9.77614 8 9.5V7.70711L2.85355 12.8536C2.65829 13.0488 2.34171 13.0488 2.14645 12.8536C1.95118 12.6583 1.95118 12.3417 2.14645 12.1464L7.29289 7H5.5C5.22386 7 5 6.77614 5 6.5C5 6.22386 5.22386 6 5.5 6H8.5C8.56779 6 8.63244 6.01349 8.69139 6.03794C8.74949 6.06198 8.80398 6.09744 8.85143 6.14433C8.94251 6.23434 8.9992 6.35909 8.99999 6.49708L8.99999 6.49738" fill="currentColor"/>
+                                </svg>
+                                <span class="text-xs">Google Drive</span>
+                            </a>
+                        </template>
+                        <template v-else>
+                            <a href="#" class="bg-gray-400 text-custom-black-pearl font-bold py-2 px-6 rounded-md inline-flex items-center hover:bg-opacity-80 transition-all">
+                                <svg class="mr-2" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 13C12.5523 13 13 12.5523 13 12V3C13 2.44771 12.5523 2 12 2H3C2.44771 2 2 2.44771 2 3V6.5C2 6.77614 2.22386 7 2.5 7C2.77614 7 3 6.77614 3 6.5V3H12V12H8.5C8.22386 12 8 12.2239 8 12.5C8 12.7761 8.22386 13 8.5 13H12ZM9 6.5C9 6.5001 9 6.50021 9 6.50031V6.50035V9.5C9 9.77614 8.77614 10 8.5 10C8.22386 10 8 9.77614 8 9.5V7.70711L2.85355 12.8536C2.65829 13.0488 2.34171 13.0488 2.14645 12.8536C1.95118 12.6583 1.95118 12.3417 2.14645 12.1464L7.29289 7H5.5C5.22386 7 5 6.77614 5 6.5C5 6.22386 5.22386 6 5.5 6H8.5C8.56779 6 8.63244 6.01349 8.69139 6.03794C8.74949 6.06198 8.80398 6.09744 8.85143 6.14433C8.94251 6.23434 8.9992 6.35909 8.99999 6.49708L8.99999 6.49738" fill="currentColor"/>
+                                </svg>
+                                <span class="text-xs">Link N/A</span>
+                            </a>
+                        </template>
+                        <template v-if="ArtLibrary.path && ArtLibrary.path !== 'N/A'">
+                            <a :href="ArtLibrary.path" target="_blank" class="bg-blue-400 text-custom-black-pearl font-bold py-2 px-6 rounded-md inline-flex items-center hover:bg-opacity-80 transition-all">
+                                <svg class="mr-2" width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 4V1L3 7l7 6V8.999h4.85c0.855 0 1.569-0.551 1.847-1.349L20.89 2.999c0.26-0.75-0.286-1.5-1.088-1.5h-8.762c-0.501 0-0.966 0.321-1.14 0.803L9 4H10z" fill="currentColor"/>
+                                    <path d="M20.949 20.031h-8.762c-0.501 0-0.966 0.321-1.14 0.803L9 24h1v-3h4.85c0.855 0 1.569-0.551 1.847-1.349L20.89 17.031c0.26-0.75-0.286-1.5-1.088-1.5H9v-3.002h1v-4l-7 6v4h1v3l6-5v-3h8.949c0.802 0 1.348-0.75 1.088-1.5L15.847 12.849A1.85 1.85 0 0014.002 11.999H9v-4h1V4h-2l6-3v3h4.85c0.855 0 1.569 0.551 1.847 1.349L21.89 9c0.26 0.75-0.286 1.5-1.088 1.5H14.002v4H15.847c0.855 0 1.569-0.551 1.847-1.349L21.89 11.999c0.26-0.75-0.286-1.5-1.088-1.5h-8.762c-0.501 0-0.966 0.321-1.14 0.803L9 9h1v4H8.95v1.999h8.762c0.802 0 1.348 0.75 1.088 1.5l-2.845 4.848c-0.278 0.799-0.992 1.349-1.847 1.349H8.95z" fill="currentColor"/>
+                                </svg>
+                                <span class="text-xs">Local Directory</span>
+                            </a>
+                        </template>
+                        <template v-else>
+                            <a href="#" class="bg-gray-400 text-custom-black-pearl font-bold py-2 px-6 rounded-md inline-flex items-center hover:bg-opacity-80 transition-all">
+                                <svg class="mr-2" width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 4V1L3 7l7 6V8.999h4.85c0.855 0 1.569-0.551 1.847-1.349L20.89 2.999c0.26-0.75-0.286-1.5-1.088-1.5h-8.762c-0.501 0-0.966 0.321-1.14 0.803L9 4H10z" fill="currentColor"/>
+                                    <path d="M20.949 20.031h-8.762c-0.501 0-0.966 0.321-1.14 0.803L9 24h1v-3h4.85c0.855 0 1.569-0.551 1.847-1.349L20.89 17.031c0.26-0.75-0.286-1.5-1.088-1.5H9v-3.002h1v-4l-7 6v4h1v3l6-5v-3h8.949c0.802 0 1.348-0.75 1.088-1.5l-2.845 4.848c-0.278 0.799-0.992 1.349-1.847 1.349H8.95z" fill="currentColor"/>
+                                </svg>
+                                <span class="text-xs">Path N/A</span>
+                            </a>
+                        </template>
                     </div>
                 </div>
                 <div class="border border-dashed rounded-lg mt-2 p-2 w-[100%]" v-for="(subArtLib, index) in SubArtLibrary" :key="index">
                     <p class="text-gray-100 text-lg font-semibold leading-6">{{ subArtLib.title }}</p>
                     <p class="text-gray-200 mb-2 text-xs font-semibold">{{ subArtLib.sub_desc }}</p>
                     <div class="flex justify-evenly">
-                        <a :href="subArtLib.link" target="_blank" class="bg-green-400 text-custom-black-pearl font-bold py-2 px-6 rounded-md inline-flex items-center hover:bg-opacity-80 transition-all">
-                            <svg class="mr-2" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 13C12.5523 13 13 12.5523 13 12V3C13 2.44771 12.5523 2 12 2H3C2.44771 2 2 2.44771 2 3V6.5C2 6.77614 2.22386 7 2.5 7C2.77614 7 3 6.77614 3 6.5V3H12V12H8.5C8.22386 12 8 12.2239 8 12.5C8 12.7761 8.22386 13 8.5 13H12ZM9 6.5C9 6.5001 9 6.50021 9 6.50031V6.50035V9.5C9 9.77614 8.77614 10 8.5 10C8.22386 10 8 9.77614 8 9.5V7.70711L2.85355 12.8536C2.65829 13.0488 2.34171 13.0488 2.14645 12.8536C1.95118 12.6583 1.95118 12.3417 2.14645 12.1464L7.29289 7H5.5C5.22386 7 5 6.77614 5 6.5C5 6.22386 5.22386 6 5.5 6H8.5C8.56779 6 8.63244 6.01349 8.69139 6.03794C8.74949 6.06198 8.80398 6.09744 8.85143 6.14433C8.94251 6.23434 8.9992 6.35909 8.99999 6.49708L8.99999 6.49738" fill="currentColor"/>
-                            </svg>
-                            <span class="text-xs">View</span>
-                        </a>
+                        <template v-if="subArtLib.link && subArtLib.link !== 'N/A'">
+                            <a :href="subArtLib.link" target="_blank" class="bg-yellow-400 text-custom-black-pearl font-bold py-2 px-6 rounded-md inline-flex items-center hover:bg-opacity-80 transition-all">
+                                <svg class="mr-2" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 13C12.5523 13 13 12.5523 13 12V3C13 2.44771 12.5523 2 12 2H3C2.44771 2 2 2.44771 2 3V6.5C2 6.77614 2.22386 7 2.5 7C2.77614 7 3 6.77614 3 6.5V3H12V12H8.5C8.22386 12 8 12.2239 8 12.5C8 12.7761 8.22386 13 8.5 13H12ZM9 6.5C9 6.5001 9 6.50021 9 6.50031V6.50035V9.5C9 9.77614 8.77614 10 8.5 10C8.22386 10 8 9.77614 8 9.5V7.70711L2.85355 12.8536C2.65829 13.0488 2.34171 13.0488 2.14645 12.8536C1.95118 12.6583 1.95118 12.3417 2.14645 12.1464L7.29289 7H5.5C5.22386 7 5 6.77614 5 6.5C5 6.22386 5.22386 6 5.5 6H8.5C8.56779 6 8.63244 6.01349 8.69139 6.03794C8.74949 6.06198 8.80398 6.09744 8.85143 6.14433C8.94251 6.23434 8.9992 6.35909 8.99999 6.49708L8.99999 6.49738" fill="currentColor"/>
+                                </svg>
+                                <span class="text-xs">Google Drive</span>
+                            </a>
+                        </template>
+                        <template v-else>
+                            <a href="#" class="bg-gray-400 text-custom-black-pearl font-bold py-2 px-6 rounded-md inline-flex items-center hover:bg-opacity-80 transition-all">
+                                <svg class="mr-2" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 13C12.5523 13 13 12.5523 13 12V3C13 2.44771 12.5523 2 12 2H3C2.44771 2 2 2.44771 2 3V6.5C2 6.77614 2.22386 7 2.5 7C2.77614 7 3 6.77614 3 6.5V3H12V12H8.5C8.22386 12 8 12.2239 8 12.5C8 12.7761 8.22386 13 8.5 13H12ZM9 6.5C9 6.5001 9 6.50021 9 6.50031V6.50035V9.5C9 9.77614 8.77614 10 8.5 10C8.22386 10 8 9.77614 8 9.5V7.70711L2.85355 12.8536C2.65829 13.0488 2.34171 13.0488 2.14645 12.8536C1.95118 12.6583 1.95118 12.3417 2.14645 12.1464L7.29289 7H5.5C5.22386 7 5 6.77614 5 6.5C5 6.22386 5.22386 6 5.5 6H8.5C8.56779 6 8.63244 6.01349 8.69139 6.03794C8.74949 6.06198 8.80398 6.09744 8.85143 6.14433C8.94251 6.23434 8.9992 6.35909 8.99999 6.49708L8.99999 6.49738" fill="currentColor"/>
+                                </svg>
+                                <span class="text-xs">Link N/A</span>
+                            </a>
+                        </template>
+                        <template v-if="subArtLib.path && subArtLib.path !== 'N/A'">
+                            <a :href="subArtLib.path" target="_blank" class="bg-blue-400 text-custom-black-pearl font-bold py-2 px-6 rounded-md inline-flex items-center hover:bg-opacity-80 transition-all">
+                                <svg class="mr-2" width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 4V1L3 7l7 6V8.999h4.85c0.855 0 1.569-0.551 1.847-1.349L20.89 2.999c0.26-0.75-0.286-1.5-1.088-1.5h-8.762c-0.501 0-0.966 0.321-1.14 0.803L9 4H10z" fill="currentColor"/>
+                                    <path d="M20.949 20.031h-8.762c-0.501 0-0.966 0.321-1.14 0.803L9 24h1v-3h4.85c0.855 0 1.569-0.551 1.847-1.349L20.89 17.031c0.26-0.75-0.286-1.5-1.088-1.5H9v-3.002h1v-4l-7 6v4h1v3l6-5v-3h8.949c0.802 0 1.348-0.75 1.088-1.5L15.847 12.849A1.85 1.85 0 0014.002 11.999H9v-4h1V4h-2l6-3v3h4.85c0.855 0 1.569 0.551 1.847 1.349L21.89 9c0.26 0.75-0.286 1.5-1.088 1.5H14.002v4H15.847c0.855 0 1.569-0.551 1.847-1.349L21.89 11.999c0.26-0.75-0.286-1.5-1.088-1.5h-8.762c-0.501 0-0.966 0.321-1.14 0.803L9 9h1v4H8.95v1.999h8.762c0.802 0 1.348 0.75 1.088 1.5l-2.845 4.848c-0.278 0.799-0.992 1.349-1.847 1.349H8.95z" fill="currentColor"/>
+                                </svg>
+                                <span class="text-xs">Local Directory</span>
+                            </a>
+                        </template>
+                        <template v-else>
+                            <a href="#" class="bg-gray-400 text-custom-black-pearl font-bold py-2 px-6 rounded-md inline-flex items-center hover:bg-opacity-80 transition-all">
+                                <svg class="mr-2" width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 4V1L3 7l7 6V8.999h4.85c0.855 0 1.569-0.551 1.847-1.349L20.89 2.999c0.26-0.75-0.286-1.5-1.088-1.5h-8.762c-0.501 0-0.966 0.321-1.14 0.803L9 4H10z" fill="currentColor"/>
+                                    <path d="M20.949 20.031h-8.762c-0.501 0-0.966 0.321-1.14 0.803L9 24h1v-3h4.85c0.855 0 1.569-0.551 1.847-1.349L20.89 17.031c0.26-0.75-0.286-1.5-1.088-1.5H9v-3.002h1v-4l-7 6v4h1v3l6-5v-3h8.949c0.802 0 1.348-0.75 1.088-1.5l-2.845 4.848c-0.278 0.799-0.992 1.349-1.847 1.349H8.95z" fill="currentColor"/>
+                                </svg>
+                                <span class="text-xs">Path N/A</span>
+                            </a>
+                        </template>
                     </div>
                 </div>
             </div>
@@ -96,10 +152,10 @@
         </div>
 
         <div class="flex bottom-0">
-            <DataCards 
+            <DataCards
                 imgSrc="library"
                 :cardDetailData="cardDetailData"
-                :ArtLibrary="ArtLibrary" 
+                :ArtLibrary="ArtLibrary"
                 :filteredArtLibraryData="AllArtLibrary"
             />
             <DataRecentList imgSrc="library" :recent="recent" />

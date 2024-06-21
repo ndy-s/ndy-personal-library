@@ -140,7 +140,7 @@ class ArtTutorialBookManagementController extends Controller
                     'sub_desc' => $key['sub_desc'] ?? 'N/A',
                     'link' => $key['link'] ?? '#',
                 ]);
-            
+
                 $artTutorialBook->subArtTutorialBooks()->save($subArtLibrary);
             }
         }

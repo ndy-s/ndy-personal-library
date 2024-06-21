@@ -72,6 +72,16 @@ class ArtCourseManagementController extends Controller
                 }
             }
 
+            $pathInput = $request->input('path');
+            if (is_null($pathInput) || $pathInput === 'N/A') {
+                $publisher = $request->input('publisher', 'N/A');
+                $title_en = $request->input('title_en');
+                $defaultPath = "D:\\Art & Animation\\Art & Animation Tutorial Courses\\$publisher\\$title_en";
+                $attributes['path'] = $defaultPath;
+            } else {
+                $attributes['path'] = $pathInput;
+            }
+
             if ($request->file('image_path')) {
                 $request->validate([
                     'image_path' => 'image|max:2048',

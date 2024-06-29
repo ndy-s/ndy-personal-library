@@ -1,15 +1,26 @@
 <template>
-    <Link :href="linkHref" class="back-button absolute top-5 left-5 bg-gray-800 text-white py-1 px-2 text-lg rounded-md flex items-center gap-1 border border-green-400 hover:translate-x-[-5px] transition-transform">
-        <svg fill="#E5E7EB" height="20" width="20" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 26.676 26.676" xml:space="preserve">
-            <g>
-                <path d="M26.105,21.891c-0.229,0-0.439-0.131-0.529-0.346l0,0c-0.066-0.156-1.716-3.857-7.885-4.59   c-1.285-0.156-2.824-0.236-4.693-0.25v4.613c0,0.213-0.115,0.406-0.304,0.508c-0.188,0.098-0.413,0.084-0.588-0.033L0.254,13.815   C0.094,13.708,0,13.528,0,13.339c0-0.191,0.094-0.365,0.254-0.477l11.857-7.979c0.175-0.121,0.398-0.129,0.588-0.029   c0.19,0.102,0.303,0.295,0.303,0.502v4.293c2.578,0.336,13.674,2.33,13.674,11.674c0,0.271-0.191,0.508-0.459,0.562   C26.18,21.891,26.141,21.891,26.105,21.891z"/>
-            </g>
+    <Link :href="linkHref" class="back-button absolute top-5 left-5 bg-gray-800 text-white py-2 px-4 text-lg rounded-md flex items-center gap-2 border border-green-400 hover:shadow-lg hover:bg-gray-700 hover:border-green-500 transition-all duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#E5E7EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left h-5 w-5 flex-shrink-0">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
         </svg>
-        Back
+        <span class="hidden sm:inline align-middle">Back</span>
     </Link>
 </template>
+
 <script setup>
-    const props = defineProps({
-        linkHref: String
-    });
+import { defineProps } from 'vue';
+
+const props = defineProps({
+    linkHref: String
+});
 </script>
+
+<style scoped>
+.back-button {
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    transform: translateX(-2px);
+}
+</style>

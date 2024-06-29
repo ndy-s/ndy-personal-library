@@ -52,6 +52,9 @@
                 />
             </div>
         </div>
+
+        <!-- Scroll buttons -->
+        <ScrollButtons />
     </Layout>
 </template>
 
@@ -64,6 +67,7 @@
     import Nav from "@/Shared/Nav.vue";
     import DataCards from "@/Shared/DataCards.vue";
     import DataRecentList from "@/Shared/DataRecentList.vue";
+    import ScrollButtons from "@/Shared/ScrollButtons.vue";
 
     let props = defineProps({
         courseTotal: Number,

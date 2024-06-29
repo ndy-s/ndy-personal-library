@@ -6,9 +6,9 @@
                 <form @submit.prevent="submit(); checkbox = false; fileInput.value = null" enctype="multipart/form-data">
                     <div class="flex justify-between items-center">
                         <p class="text-2xl font-bold text-white border-l-4 border-green-400 pl-4">{{ editMode ? 'Edit' : 'Create' }} Data Modal</p>
-                        <button 
+                        <button
                             type="reset"
-                            class="modal-close text-white cursor-pointer flex items-center justify-center w-6 h-6 ml-auto rounded-full hover:bg-green-400 hover:text-gray-800 transition-colors duration-200" 
+                            class="modal-close text-white cursor-pointer flex items-center justify-center w-6 h-6 ml-auto rounded-full hover:bg-green-400 hover:text-gray-800 transition-colors duration-200"
                             @click="closeCreateEditModal()"
                             title="Close Modal"
                         >
@@ -19,26 +19,26 @@
                     </div>
 
                     <div class="grid gap-6 my-4 md:grid-cols-3">
-                        <div 
-                            class="h-[100px] w-[100px] mx-auto rounded-full block bg-center bg-cover bg-gray-900 border border-dashed border-green-400" 
+                        <div
+                            class="h-[100px] w-[100px] mx-auto rounded-full block bg-center bg-cover bg-gray-900 border border-dashed border-green-400"
                             :style="{ 'background-image': editMode && form.previewImage == tempArtLib.image_path ? `url(img/${imgSrc}/${form.previewImage})` : `url(${form.previewImage})` }"
                             @click="fileInput.click()"
                         ></div>
                         <div class="col-span-2">
-                            <label 
-                                for="image_path" 
+                            <label
+                                for="image_path"
                                 class="block mb-2 text-sm font-bold text-white"
                             >
                                 Cover Image (WebP) *
                             </label>
-                            <input 
-                                type="file" 
-                                ref="fileInput" 
-                                name="image_path" 
-                                @input="pickFile" 
-                                id="image_path" 
+                            <input
+                                type="file"
+                                ref="fileInput"
+                                name="image_path"
+                                @input="pickFile"
+                                id="image_path"
                                 accept="image/webp"
-                                class="bg-gray-900 border border-green-400 text-white text-sm rounded-md focus:ring-green-100 focus:border-green-100 block w-full p-2.5" 
+                                class="bg-gray-900 border border-green-400 text-white text-sm rounded-md focus:ring-green-100 focus:border-green-100 block w-full p-2.5"
                                 :class="{'placeholder-red-500 border-red-500': form.errors.image_path}"
                                 :required="!editMode"
                             >
@@ -49,7 +49,7 @@
                             >
                             </div>
                         </div>
-                        <ManagementInputField 
+                        <ManagementInputField
                             v-for="(input, index) in modalInput"
                             :key="index"
                             :form="form"
@@ -68,17 +68,17 @@
                         </div>
 
                         <div class="flex w-[15%] gap-4">
-                            <button 
-                                :type="editMode ? 'button' : 'reset'" 
-                                class="text-white bg-red-600 rounded-md text-sm font-semibold w-full px-4 py-2.5 text-center shadow-md transition-colors duration-200 ease-in-out | hover:bg-red-700 focus:ring-2 focus:outline-none focus:ring-red-300" 
+                            <button
+                                :type="editMode ? 'button' : 'reset'"
+                                class="text-white bg-red-600 rounded-md text-sm font-semibold w-full px-4 py-2.5 text-center shadow-md transition-colors duration-200 ease-in-out | hover:bg-red-700 focus:ring-2 focus:outline-none focus:ring-red-300"
                                 @click="editMode ? resetFunc(tempArtLib): form.reset(); checkbox = false; fileInput.value = null"
                             >
                                 Reset
                             </button>
-                            
-                            <button 
-                                type="submit" 
-                                class="text-white bg-green-600 rounded-md text-sm font-semibold w-full px-4 py-2.5 text-center shadow-md transition-colors duration-200 ease-in-out | hover:bg-green-700 focus:ring-2 focus:outline-none focus:ring-green-300"  
+
+                            <button
+                                type="submit"
+                                class="text-white bg-green-600 rounded-md text-sm font-semibold w-full px-4 py-2.5 text-center shadow-md transition-colors duration-200 ease-in-out | hover:bg-green-700 focus:ring-2 focus:outline-none focus:ring-green-300"
                                 :disabled="form.processing"
                             >
                                 {{ editMode ? 'Update' : 'Submit' }}

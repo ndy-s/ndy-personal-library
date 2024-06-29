@@ -156,6 +156,9 @@
                 </div>
             </div>
         </Transition>
+
+        <!-- Scroll buttons -->
+        <ScrollButtons />
     </Layout>
 </template>
 
@@ -166,6 +169,7 @@
     import DataCards from "@/Shared/DataCards.vue";
     import DataRecentList from "@/Shared/DataRecentList.vue";
     import DetailBackButton from "../../Shared/DetailBackButton.vue";
+    import ScrollButtons from "@/Shared/ScrollButtons.vue";
 
     const props = defineProps({
         'AllArtLibrary': Object,

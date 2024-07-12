@@ -237,32 +237,38 @@
     const submit = () => {
         if (!buttonClicked.value) {
             if (editMode.value === false && deleteMode.value === false) {
-                form.post('art-tutorial-book-management-create', {
-                    preserveScroll: true,
-                    onSuccess: () => {
-                        form.reset();
-                        closeCreateEditModal();
+                // Handle image processing before form submission
+                processImage(() => {
+                    form.post('art-tutorial-book-management-create', {
+                        preserveScroll: true,
+                        onSuccess: () => {
+                            form.reset();
+                            closeCreateEditModal();
 
-                        messageNotification.value = 'Created Sucessfully'
-                        successNotification.value = true;
-                        setTimeout(() => {
-                            successNotification.value = false;
-                        }, 3000);
-                    }
+                            messageNotification.value = 'Created Sucessfully'
+                            successNotification.value = true;
+                            setTimeout(() => {
+                                successNotification.value = false;
+                            }, 3000);
+                        }
+                    });
                 });
             } else if (editMode.value === true) {
-                form.post('art-tutorial-book-management-update', {
-                    preserveScroll: true,
-                    onSuccess: () => {
-                        form.reset();
-                        closeCreateEditModal();
+                // Handle image processing before form submission
+                processImage(() => {
+                    form.post('art-tutorial-book-management-update', {
+                        preserveScroll: true,
+                        onSuccess: () => {
+                            form.reset();
+                            closeCreateEditModal();
 
-                        messageNotification.value = 'Edited Sucessfully'
-                        successNotification.value = true;
-                        setTimeout(() => {
-                            successNotification.value = false;
-                        }, 3000);
-                    }
+                            messageNotification.value = 'Edited Sucessfully'
+                            successNotification.value = true;
+                            setTimeout(() => {
+                                successNotification.value = false;
+                            }, 3000);
+                        }
+                    });
                 });
             } else {
                 buttonClicked.value = true;
@@ -279,6 +285,56 @@
                         }, 3000);
                     }
                 });
+            }
+        }
+    };
+
+    // Function to handle image processing before form submission
+    const processImage = (callback) => {
+        if (form.image_path instanceof File) {
+            const imageFile = form.image_path;
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+
+                    // Calculate new dimensions maintaining aspect ratio based on height
+                    const maxHeight = 720;
+                    let width = img.width;
+                    let height = img.height;
+
+                    if (height > maxHeight) {
+                        width *= maxHeight / height;
+                        height = maxHeight;
+                    }
+
+                    canvas.width = width;
+                    canvas.height = height;
+
+                    // Draw image on canvas
+                    ctx.drawImage(img, 0, 0, width, height);
+
+                    // Convert canvas to WebP and set quality
+                    canvas.toBlob((blob) => {
+                        const webpBlob = new File([blob], 'image.webp', { type: 'image/webp' });
+                        form.image_path = webpBlob;
+
+                        // Call the callback function after image processing
+                        if (typeof callback === 'function') {
+                            callback();
+                        }
+                    }, 'image/webp', 0.9); // 0.9 is the quality (90%)
+                };
+                img.src = event.target.result;
+            };
+            reader.readAsDataURL(imageFile);
+        } else {
+            // No image selected, directly call the callback function
+            if (typeof callback === 'function') {
+                callback();
             }
         }
     };

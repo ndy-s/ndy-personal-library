@@ -29,7 +29,7 @@
                                 for="image_path"
                                 class="block mb-2 text-sm font-bold text-white"
                             >
-                                Cover Image (WebP) *
+                                Cover Image
                             </label>
                             <input
                                 type="file"
@@ -37,7 +37,7 @@
                                 name="image_path"
                                 @input="pickFile"
                                 id="image_path"
-                                accept="image/webp"
+                                accept="image/*"
                                 class="bg-gray-900 border border-green-400 text-white text-sm rounded-md focus:ring-green-100 focus:border-green-100 block w-full p-2.5"
                                 :class="{'placeholder-red-500 border-red-500': form.errors.image_path}"
                                 :required="!editMode"
@@ -113,12 +113,14 @@
     const pickFile = () => {
         const input = fileInput.value;
         const file = input.files;
+
         if (file && file[0]) {
             const reader = new FileReader();
             reader.onload = (e) => {
                 props.form.previewImage = e.target.result;
             };
             reader.readAsDataURL(file[0]);
+
             props.form.image_path = file[0];
         }
     };

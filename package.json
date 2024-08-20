@@ -1,9 +1,8 @@
 {
     "private": true,
     "scripts": {
-        "serve": "php artisan serve",
-        "dev": "concurrently \"npm run serve\" \"npm run hot\"",
-        "hot": "vite"
+        "start": "php artisan serve",
+        "build": "vite build"
     },
     "devDependencies": {
         "@vitejs/plugin-vue": "^4.1.0",

@@ -5,9 +5,9 @@
             <div class="modal-content py-4 text-left px-6">
                 <div class="flex justify-between items-center pb-3">
                     <p class="text-2xl font-bold text-white border-l-4 border-green-400 pl-4">Sub Data Modal</p>
-                    <button 
-                        type="button" 
-                        class="modal-close text-white cursor-pointer flex items-center justify-center w-6 h-6 ml-auto rounded-full hover:bg-green-400 hover:text-gray-800 transition-colors duration-200" 
+                    <button
+                        type="button"
+                        class="modal-close text-white cursor-pointer flex items-center justify-center w-6 h-6 ml-auto rounded-full hover:bg-green-400 hover:text-gray-800 transition-colors duration-200"
                         @click="$emit('closeSubData')"
                         title="Close Modal"
                     >
@@ -22,22 +22,22 @@
                         <div class="mt-2">
                             <label class="block mb-2 text-sm text-white font-bold">Master Data</label>
                             <div class="flex justify-evenly gap-4">
-                                <input 
+                                <input
                                     type="text"
                                     :value="masterData.title_en"
                                     class="bg-gray-900 border text-white text-sm rounded-md focus:ring-green-100 focus:border-green-100 focus:outline-none block w-full p-2.5 opacity-70 border-white cursor-not-allowed"
                                     placeholder="Title"
                                     disabled
                                 >
-                                <input 
+                                <input
                                     type="text"
                                     :value="masterData.desc"
                                     class="bg-gray-900 border text-white text-sm rounded-md focus:ring-green-100 focus:border-green-100 focus:outline-none block w-full p-2.5 opacity-70 border-white cursor-not-allowed"
                                     placeholder="Sub Desc"
                                     disabled
                                 >
-                                <input 
-                                    type="text" 
+                                <input
+                                    type="text"
                                     :value="masterData.link"
                                     class="bg-gray-900 border text-white text-sm rounded-md focus:ring-green-100 focus:border-green-100 focus:outline-none block w-full p-2.5 opacity-70 border-white cursor-not-allowed"
                                     placeholder="Link"
@@ -54,29 +54,29 @@
                         <div v-for="(data, index) in formData" :key="index" class="mt-2">
                             <label v-if="index != 0" class="block mb-2 text-sm text-white">Fields Sub Data {{ ++index }}</label>
                             <div v-if="index != 0" class="flex justify-evenly gap-4">
-                                <input 
+                                <input
                                     type="text"
-                                    v-model="data.title" 
+                                    v-model="data.title"
                                     class="bg-gray-900 border border-green-400 text-white text-sm rounded-md focus:ring-green-100 focus:border-green-100 focus:outline-none block w-full p-2.5"
                                     placeholder="Title"
                                 >
-                                <input 
+                                <input
                                     type="text"
-                                    v-model="data.sub_desc" 
-                                    class="bg-gray-900 border border-green-400 text-white text-sm rounded-md focus:ring-green-100 focus:border-green-100 focus:outline-none block w-full p-2.5" 
+                                    v-model="data.sub_desc"
+                                    class="bg-gray-900 border border-green-400 text-white text-sm rounded-md focus:ring-green-100 focus:border-green-100 focus:outline-none block w-full p-2.5"
                                     placeholder="Sub Desc"
                                 >
-                                <input 
-                                    type="text" 
-                                    v-model="data.link" 
+                                <input
+                                    type="text"
+                                    v-model="data.link"
                                     class="bg-gray-900 border border-green-400 text-white text-sm rounded-md focus:ring-green-100 focus:border-green-100 focus:outline-none block w-full p-2.5"
                                     placeholder="Link"
                                 >
 
-                                <button 
-                                    type="button" 
-                                    @click="() => formData.splice(index-1, 1)" 
-                                    title="Delete Fields" 
+                                <button
+                                    type="button"
+                                    @click="() => formData.splice(index-1, 1)"
+                                    title="Delete Fields"
                                     class="w-fit h-fit rounded-lg text-sm p-2 ml-auto my-auto bg-red-500 | hover:bg-red-600 transition-colors"
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-trash" viewBox="0 0 16 16">
@@ -87,8 +87,8 @@
                         </div>
                     </div>
                     <div class="flex justify-center">
-                        <button 
-                            type="button" 
+                        <button
+                            type="button"
                             @click="() => formData.push({'id': formData[0],'title': '','sub_desc': '','link': ''})"
                             title="Add Fields"
                         >
@@ -98,19 +98,19 @@
                         </button>
                     </div>
                     <div class="flex justify-center gap-4">
-                        <button 
-                            type="button" 
-                            class="text-white bg-red-600 rounded-md text-sm font-semibold w-[15%] px-4 py-2.5 text-center shadow-md transition-colors duration-200 ease-in-out | hover:bg-red-700 focus:ring-2 focus:outline-none focus:ring-red-300" 
+                        <button
+                            type="button"
+                            class="text-white bg-red-600 rounded-md text-sm font-semibold w-[15%] px-4 py-2.5 text-center shadow-md transition-colors duration-200 ease-in-out | hover:bg-red-700 focus:ring-2 focus:outline-none focus:ring-red-300"
                             @click="() => {let idTemp = formData[0]; formData.splice(0); subDataFunc(idTemp)}"
                         >
-                            Reset
+                            <i class="fas fa-sync-alt"></i>&nbsp; Reset
                         </button>
 
-                        <button 
-                            type="submit" 
-                            class="text-white bg-green-600 rounded-md text-sm font-semibold w-[15%] px-4 py-2.5 text-center shadow-md transition-colors duration-200 ease-in-out | hover:bg-green-700 focus:ring-2 focus:outline-none focus:ring-green-300" 
+                        <button
+                            type="submit"
+                            class="text-white bg-green-600 rounded-md text-sm font-semibold w-[15%] px-4 py-2.5 text-center shadow-md transition-colors duration-200 ease-in-out | hover:bg-green-700 focus:ring-2 focus:outline-none focus:ring-green-300"
                         >
-                            Submit
+                            <i class="fas fa-check"></i>&nbsp; Submit
                         </button>
                     </div>
                 </form>

@@ -70,18 +70,18 @@
                         <div class="flex w-[15%] gap-4">
                             <button
                                 :type="editMode ? 'button' : 'reset'"
-                                class="text-white bg-red-600 rounded-md text-sm font-semibold w-full px-4 py-2.5 text-center shadow-md transition-colors duration-200 ease-in-out | hover:bg-red-700 focus:ring-2 focus:outline-none focus:ring-red-300"
-                                @click="editMode ? resetFunc(tempArtLib): form.reset(); checkbox = false; fileInput.value = null"
+                                class="flex items-center justify-center text-white bg-red-600 rounded-md text-sm font-semibold w-full px-4 py-2.5 text-center shadow-md transition-colors duration-200 ease-in-out hover:bg-red-700 focus:ring-2 focus:outline-none focus:ring-red-300"
+                                @click="editMode ? resetFunc(tempArtLib) : form.reset(); checkbox = false; fileInput.value = null"
                             >
-                                Reset
+                                <i class="fas fa-sync-alt"></i>&nbsp; Reset
                             </button>
 
                             <button
                                 type="submit"
-                                class="text-white bg-green-600 rounded-md text-sm font-semibold w-full px-4 py-2.5 text-center shadow-md transition-colors duration-200 ease-in-out | hover:bg-green-700 focus:ring-2 focus:outline-none focus:ring-green-300"
+                                class="flex items-center justify-center text-white bg-green-600 rounded-md text-sm font-semibold w-full px-4 py-2.5 text-center shadow-md transition-colors duration-200 ease-in-out hover:bg-green-700 focus:ring-2 focus:outline-none focus:ring-green-300"
                                 :disabled="form.processing"
                             >
-                                {{ editMode ? 'Update' : 'Submit' }}
+                                <i class="fas fa-check"></i>&nbsp; {{ editMode ? 'Update' : 'Submit' }}
                             </button>
                         </div>
                     </div>

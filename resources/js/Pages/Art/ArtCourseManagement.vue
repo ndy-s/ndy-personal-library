@@ -74,6 +74,7 @@
 <script setup>
     import { reactive, ref, watch } from "vue";
     import { router, useForm } from "@inertiajs/vue3";
+    import '@fortawesome/fontawesome-free/css/all.min.css';
 
     import Layout from "@/Shared/Layout.vue";
     import Nav from "@/Shared/Nav.vue";

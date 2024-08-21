@@ -12,9 +12,18 @@
                 </div>
             </div>
         </div>
-    </td>  
+    </td>
 
-    <td v-else class="py-2 px-6 text-sm text-gray-200 whitespace-nowrap">{{ ArtLib[tableId] }}</td>
+
+    <td
+        v-else
+        :class="[
+            'py-2 px-6 text-sm whitespace-nowrap',
+            shouldCenter ? 'text-center text-white' : 'text-left text-gray-200'
+        ]"
+    >
+        {{ ArtLib[tableId] }}
+    </td>
 </template>
 
 <script setup>
@@ -25,4 +34,7 @@
         tableId: String,
         ArtLib: Object,
     });
+
+    const uncenteredIds = ['original', 'series', 'publisher', 'author', 'source', 'desc', 'link', 'path', 'image_path'];
+    const shouldCenter = !uncenteredIds.includes(props.tableId);
 </script>

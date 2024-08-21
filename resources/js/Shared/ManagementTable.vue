@@ -4,11 +4,11 @@
             <thead>
                 <tr>
                     <ManagementTableHead columnTitle="Action"/>
-                    <ManagementTableHead 
-                        v-for="(head, index) in tableHead" 
+                    <ManagementTableHead
+                        v-for="(head, index) in tableHead"
                         :key="index"
-                        :columnTitle="head.title" 
-                        :tableId="head.tableId == 'title_en' || head.tableId == 'original' || head.tableId == 'type' || head.tableId == 'publisher'? head.tableId : ''" 
+                        :columnTitle="head.title"
+                        :tableId="head.tableId == 'title_en' || head.tableId == 'original' || head.tableId == 'type' || head.tableId == 'series' || head.tableId == 'publisher' || head.tableId == 'author' || head.tableId == 'studio' || head.tableId == 'year' || head.tableId == 'lang' || head.tableId == 'status' ? head.tableId : ''"
                         :params="params"
                         @sort="(val) => sort(val)"
                     />
@@ -18,9 +18,9 @@
             <tbody class="divide-y divide-green-800">
                 <tr v-if="ArtLibrary.data.length !== 0" v-for="(ArtLib) in ArtLibrary.data" :key="ArtLib.id" class="hover:bg-gray-900" :class="{ 'bg-gray-900': state.clickedRow === ArtLib.id }">
                     <td class="py-2 px-6 text-sm text-gray-200 whitespace-nowrap">
-                        <button 
-                            @click="subDataFunc(ArtLib.id); state.clickedRow = ArtLib.id;" 
-                            title="Sub Data Toolbox" 
+                        <button
+                            @click="subDataFunc(ArtLib.id); state.clickedRow = ArtLib.id;"
+                            title="Sub Data Toolbox"
                             class="relative rounded-lg text-sm p-1.5 ml-auto inline-flex items-center hover:bg-gray-600"
                         >
                             <span v-if="SubArtLibrary.filter((sub) => sub.master_id == ArtLib.id) != 0" class="absolute w-4 h-4 font-bold top-[-4px] left-[-4px] text-[10px] rounded-full bg-white text-custom-black-pearl flex items-center justify-center">{{ SubArtLibrary.filter((sub) => sub.master_id == ArtLib.id).length }}</span>
@@ -29,18 +29,18 @@
                             </svg>
                         </button>
 
-                        <button 
-                            @click="editFunc(ArtLib); state.clickedRow = ArtLib.id;" 
-                            title="Edit" 
+                        <button
+                            @click="editFunc(ArtLib); state.clickedRow = ArtLib.id;"
+                            title="Edit"
                             class="rounded-lg text-sm p-1.5 ml-auto inline-flex items-center hover:bg-gray-600"
                         >
                             <svg width="18" height="18" stroke-width="1.5" viewBox="0 0 24 24" fill="blue" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M13.0207 5.82839L15.8491 2.99996L20.7988 7.94971L17.9704 10.7781M13.0207 5.82839L3.41405 15.435C3.22652 15.6225 3.12116 15.8769 3.12116 16.1421V20.6776H7.65669C7.92191 20.6776 8.17626 20.5723 8.3638 20.3847L17.9704 10.7781M13.0207 5.82839L17.9704 10.7781" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </button>
-                        <button 
-                            @click="deleteFunc(ArtLib); state.clickedRow = ArtLib.id;" 
-                            title="Delete" 
+                        <button
+                            @click="deleteFunc(ArtLib); state.clickedRow = ArtLib.id;"
+                            title="Delete"
                             class="rounded-lg text-sm p-1.5 ml-auto inline-flex items-center hover:bg-gray-600"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#FF7F7F" class="bi bi-trash" viewBox="0 0 16 16">
@@ -48,9 +48,9 @@
                             </svg>
                         </button>
                     </td>
-                  
-                    <ManagementTableBody 
-                        v-for="(head, index) in tableHead" 
+
+                    <ManagementTableBody
+                        v-for="(head, index) in tableHead"
                         :key="index"
                         :imgSrc="imgSrc"
                         :tableId="head.tableId"
@@ -69,17 +69,17 @@
 
     <div class="flex flex-wrap mt-5 justify-center" v-show="ArtLibrary.links.length > 3">
         <template v-for="(link, key) in ArtLibrary.links" :key="key">
-            <div 
-                v-if="link.url === null" 
-                :key="`${key}-disabled`" 
-                class="mr-1 mb-1 px-4 py-3 text-sm leading-4 bg-gray-800 text-white border border-green-300 rounded cursor-not-allowed" 
+            <div
+                v-if="link.url === null"
+                :key="`${key}-disabled`"
+                class="mr-1 mb-1 px-4 py-3 text-sm leading-4 bg-gray-800 text-white border border-green-300 rounded cursor-not-allowed"
                 v-html="link.label"
             />
-            <Link 
-                v-else 
-                :key="key" 
-                class="mr-1 mb-1 px-4 py-3 text-sm leading-4 bg-gray-800 border border-green-300 text-gray-200 rounded hover:bg-white hover:text-gray-900 hover:border-white" 
-                :class="{ 'bg-white text-gray-900 border-white': link.active }" 
+            <Link
+                v-else
+                :key="key"
+                class="mr-1 mb-1 px-4 py-3 text-sm leading-4 bg-gray-800 border border-green-300 text-gray-200 rounded hover:bg-white hover:text-gray-900 hover:border-white"
+                :class="{ 'bg-white text-gray-900 border-white': link.active }"
                 :href="link.url"
             >
                 <span v-html="link.label"></span>

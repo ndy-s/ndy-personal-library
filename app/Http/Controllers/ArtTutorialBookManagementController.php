@@ -37,7 +37,11 @@ class ArtTutorialBookManagementController extends Controller
 
         return Inertia::render('Art/ArtTutorialBookManagement', [
             'AllArtLibrary' => $query->get(),
-            'ArtLibrary' => $query->orderBy('created_at', 'desc')->paginate('10')->withQueryString(),
+            'ArtLibrary' => $query
+                ->orderBy('updated_at', 'desc')
+                ->orderBy('created_at', 'desc')
+                ->paginate('10')
+                ->withQueryString(),
             'SubArtLibrary' => SubArtTutorialBook::all(),
             'filters' => request()->all(['search', 'field', 'direction']),
         ]);

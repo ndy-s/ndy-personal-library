@@ -35,7 +35,11 @@ class ArtCourseManagementController extends Controller
 
         return Inertia::render('Art/ArtCourseManagement', [
             'AllArtLibrary' => $query->get(),
-            'ArtLibrary' => $query->orderBy('created_at', 'desc')->paginate('10')->withQueryString(),
+            'ArtLibrary' => $query
+                ->orderBy('updated_at', 'desc')
+                ->orderBy('created_at', 'desc')
+                ->paginate('10')
+                ->withQueryString(),
             'SubArtLibrary' => SubArtCourse::all(),
             'filters' => request()->all(['search', 'field', 'direction']),
         ]);

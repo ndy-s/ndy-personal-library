@@ -19,7 +19,7 @@
 
                     <HomeCard
                         artHomeLink="art-course"
-                        artHomeImage="https://storage.googleapis.com/static.fastcampus.co.kr/prod/uploads/202206/042405-569/us-media-havtza-coursecard.png?w=384&q=75"
+                        artHomeImage="https://storage.googleapis.com/static.fastcampus.co.kr/prod/uploads/202206/042405-569/us-media-havtza-coursecard.png"
                         artHomeAlt="Art Course"
                     >
                         <template #default>Art Course</template>
@@ -28,7 +28,7 @@
 
                     <HomeCard
                         artHomeLink="art-tutorial-book"
-                        artHomeImage="https://i.ebayimg.com/images/g/akEAAOSwnBRgLJIm/s-l1200.webp"
+                        artHomeImage="https://i.ytimg.com/vi/DGrCzJG8YiI/hq720.jpg"
                         artHomeAlt="Art Course"
                     >
                         <template #default>Art Tutorial Book</template>
